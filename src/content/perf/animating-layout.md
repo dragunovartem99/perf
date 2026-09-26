@@ -14,4 +14,4 @@ refs:
     - https://web.dev/articles/stick-to-compositor-only-properties-and-manage-layer-count
 ---
 
-`left`, `top`, `width`, `height` and `margin` rerun layout and paint every frame, on the main thread. `transform` and `opacity` run on the compositor and stay smooth while JavaScript is busy. Every tween on this page touches only those two.
+`left`, `top`, `width`, `height` and `margin` rerun layout and paint on every frame, on the main thread. `transform` and `opacity` run on the compositor and stay smooth even while JavaScript is busy. Every animation on this page uses only those two.

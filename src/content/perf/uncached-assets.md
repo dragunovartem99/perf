@@ -1,5 +1,5 @@
 ---
-order: 7
+order: 5
 title: Hashed assets that are never cached
 chapter: loading
 metrics: [lcp]
@@ -17,4 +17,4 @@ refs:
     - https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Cache-Control
 ---
 
-A file whose name carries its content hash can never go stale, yet without a long `max-age` every repeat visit re-requests it. Cache hashed assets for a year with `immutable`; keep the HTML on `no-cache` so a deploy is picked up at once.
+A file with a content hash in its name never changes, yet without a long `max-age` every repeat visit asks for it again. Cache hashed files for a year with `immutable`, and keep the HTML on `no-cache` so a new deploy shows up at once.

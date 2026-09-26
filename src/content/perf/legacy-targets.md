@@ -16,4 +16,4 @@ refs:
     - https://web.dev/baseline
 ---
 
-Down-levelling to ES5 turns classes, `async` and spread into longer, slower helpers, and polyfills ship to every browser that already has the feature. Target what your visitors run — Baseline is a sane default — and the same source comes out smaller and faster to parse.
+Compiling to ES5 turns classes, `async` and spread into longer, slower helpers, and polyfills ship even to browsers that already have the feature. Target what your visitors run — Baseline is a sane default — and the same source comes out smaller and faster to parse.

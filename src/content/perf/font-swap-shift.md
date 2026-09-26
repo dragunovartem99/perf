@@ -24,4 +24,4 @@ refs:
     - https://web.dev/articles/font-best-practices
 ---
 
-`swap` paints fallback text at once, then reflows every line when the web font lands with different metrics. Tune a local fallback with `size-adjust` and the `*-override` descriptors so the swap barely moves, and preload the font. Astro's font API and `next/font` generate the fallback — this page uses it.
+`font-display: swap` shows fallback text at once, then reflows every line when the web font arrives with different metrics. A local fallback tuned with `size-adjust` and the `*-override` descriptors makes the swap barely move; preloading the font makes it happen sooner. Astro's font API and `next/font` generate the fallback — this page uses it.

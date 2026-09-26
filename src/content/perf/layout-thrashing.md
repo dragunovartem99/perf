@@ -19,4 +19,4 @@ refs:
     - https://gist.github.com/paulirish/5d52fb081b3570c81e3a
 ---
 
-Reading geometry after a style write forces layout to run right now, synchronously — in a loop, once per item. Read everything, then write everything, and layout runs once.
+Reading geometry right after a style change forces the browser to run layout immediately — in a loop, once per item. Read everything first, then write everything, and layout runs once.

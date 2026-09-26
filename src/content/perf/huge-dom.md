@@ -18,4 +18,4 @@ refs:
     - https://developer.mozilla.org/en-US/docs/Web/CSS/content-visibility
 ---
 
-Every node costs style, layout and memory, and any change rechecks the whole tree. `content-visibility: auto` skips rendering off-screen rows but keeps them in the DOM for find-in-page and screen readers; `contain-intrinsic-size` holds their height. For truly huge lists, virtualise.
+Every node costs style, layout and memory, and a change can recheck the whole tree. `content-visibility: auto` skips rendering off-screen rows but keeps them in the DOM for find-in-page and screen readers; `contain-intrinsic-size` reserves their height. For very long lists, virtualise.

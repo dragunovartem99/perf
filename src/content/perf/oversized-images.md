@@ -1,5 +1,5 @@
 ---
-order: 5
+order: 2
 title: One image for every screen
 chapter: loading
 metrics: [lcp]
@@ -17,4 +17,4 @@ refs:
     - https://web.dev/learn/images
 ---
 
-A phone downloads four thousand pixels to show four hundred. `srcset` lists the widths that exist, `sizes` says how wide the image renders, and the browser picks the smallest that is sharp enough. AVIF and WebP beat JPEG at the same quality.
+A phone downloads 4000 pixels to show 400. `srcset` lists the widths that exist, `sizes` says how wide the image is displayed, and the browser picks the smallest one that looks sharp. AVIF and WebP are smaller than JPEG at the same quality.

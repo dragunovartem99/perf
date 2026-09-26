@@ -15,4 +15,4 @@ refs:
     - https://web.dev/articles/reduce-javascript-payloads-with-tree-shaking
 ---
 
-CommonJS packages cannot be tree-shaken: import one function, ship the whole library. Prefer ES module builds with named imports, and check what the platform already has — `structuredClone`, `Intl`, `Array.prototype.toSorted`.
+CommonJS packages cannot be tree-shaken: import one function and you ship the whole library. Prefer ES module builds with named imports, and check what the platform already has — `structuredClone`, `Intl`, `Array.prototype.toSorted`.

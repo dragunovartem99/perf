@@ -1,5 +1,5 @@
 ---
-order: 2
+order: 3
 title: Parser-blocking scripts
 chapter: loading
 metrics: [lcp]
@@ -16,4 +16,4 @@ refs:
     - https://web.dev/articles/efficiently-load-third-party-javascript
 ---
 
-A classic `<script>` in `<head>` stops the parser until it downloads and runs, so a slow third-party server blanks the page. `defer` runs in order after parsing; `async` runs whenever it lands, for scripts nothing depends on. `type="module"` is deferred already.
+A plain `<script>` in `<head>` stops HTML parsing until it downloads and runs, so a slow third-party server keeps the page blank. `defer` runs scripts in order after parsing; `async` runs each as soon as it arrives, for scripts nothing depends on. `type="module"` is deferred by default.

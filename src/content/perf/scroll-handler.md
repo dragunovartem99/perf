@@ -21,4 +21,4 @@ refs:
     - https://developer.chrome.com/docs/css-ui/scroll-driven-animations
 ---
 
-A scroll handler can run every frame, and each measurement after a class change forces layout. `IntersectionObserver` checks visibility during the browser's own rendering steps and calls you only on change. For scroll-linked visuals, CSS scroll-driven animations need no script at all.
+A scroll handler can run every frame, and each measurement after a class change forces layout. `IntersectionObserver` checks visibility as part of the browser's own rendering and calls you only when it changes. For scroll-linked effects, CSS scroll-driven animations need no script at all.

@@ -18,4 +18,4 @@ refs:
     - https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API
 ---
 
-Parsing, searching, sorting and diffing do not need the DOM, so they do not need the main thread. A Web Worker runs them in parallel while typing stays instant. Messages are copied: send the query and the results, not the whole index.
+Parsing, searching, sorting and diffing do not need the DOM, so they do not need the main thread. A Web Worker runs them in parallel and typing stays instant. Messages are copied: send the query and the results, not the whole index.

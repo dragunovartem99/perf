@@ -14,4 +14,4 @@ refs:
     - https://web.dev/articles/bfcache
 ---
 
-The back/forward cache restores a page instantly. An `unload` listener can make a page ineligible, turning Back into a full reload — and on mobile it often never fires anyway. `pagehide` and `visibilitychange` fire reliably and keep the page cacheable.
+The back/forward cache restores a page instantly on Back. An `unload` listener can make the page ineligible, so Back becomes a full reload — and on mobile `unload` often never fires anyway. `pagehide` and `visibilitychange` fire reliably and keep the page cacheable.

@@ -15,4 +15,4 @@ refs:
     - https://web.dev/articles/cls
 ---
 
-Banners, ads and embeds arrive late and push what the reader was looking at. Reserve the slot at its expected size, or put it where nothing moves: below the fold or out of flow. Shifts within 500 ms of a click or key press are expected and do not count.
+Banners, ads and embeds load late and push down what the reader was looking at. Reserve their space at the expected size, or put them where nothing moves: below the fold or out of flow. Shifts within 500 ms of a click or key press do not count.

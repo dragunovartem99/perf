@@ -14,4 +14,4 @@ refs:
     - https://web.dev/articles/optimize-cls
 ---
 
-Until the bytes arrive, the browser does not know how tall an image is, so it reserves nothing and shoves the text down when it lands. `width` and `height` give it the aspect ratio up front. For iframes, video and embeds, set `aspect-ratio`.
+Until an image loads, the browser does not know its height, so it reserves no space and pushes the text down when the image arrives. `width` and `height` give it the aspect ratio up front. For iframes, video and embeds, set `aspect-ratio`.

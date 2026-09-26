@@ -22,4 +22,4 @@ refs:
     - https://web.dev/articles/optimize-long-tasks
 ---
 
-INP runs from the input to the next painted frame, and a long task in the handler holds that frame hostage. Show the response, yield so the browser can paint, then do the work. `scheduler.yield()` ships in Chromium and Firefox; Safari needs a `setTimeout` fallback.
+INP measures from the input to the next painted frame, and a long task in the handler delays that frame. Update the UI first, yield so the browser can paint, then do the work. `scheduler.yield()` ships in Chromium and Firefox; Safari needs a `setTimeout` fallback.

@@ -16,4 +16,4 @@ refs:
     - https://docs.astro.build/en/concepts/islands/
 ---
 
-Server-rendered HTML looks ready, but a click is ignored until hydration has downloaded the code, rerun every component and attached the handlers — one long task right when people start tapping. Ship JavaScript only for the parts that are interactive, and hydrate them when they are needed: islands, server components, or resumability.
+Server-rendered HTML looks ready, but clicks do nothing until hydration has downloaded the code, rerun every component and attached the handlers — one long task, right when people start tapping. Ship JavaScript only for the interactive parts, and hydrate them when needed: islands, server components or resumability.
