@@ -5,11 +5,10 @@ chapter: interaction
 metrics: [inp]
 impact: high
 slow: |-
-    hydrateRoot(document, <App />) // every static paragraph included
+    hydrateRoot(document, <App />) // every paragraph too
 fast: |
-    <Article />                 {/* HTML only, no JS */}
-    <Comments client:visible /> {/* hydrated on scroll */}
-    <SearchBox client:idle />
+    <Article />
+    <Comments client:visible />
 lang: jsx
 spot: "Performance panel: one long Evaluate Script task after first paint"
 refs:
@@ -17,4 +16,4 @@ refs:
     - https://docs.astro.build/en/concepts/islands/
 ---
 
-Server-rendered HTML looks ready, but clicks do nothing until hydration has downloaded the code, rerun every component and attached the handlers — one long task, right when people start tapping. Ship JavaScript only for the interactive parts, and hydrate them when needed: islands, server components or resumability.
+The page looks ready, but clicks do nothing until every component has run again. Ship JavaScript only for the interactive parts, and hydrate them when needed.

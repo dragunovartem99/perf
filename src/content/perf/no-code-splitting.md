@@ -7,10 +7,7 @@ impact: high
 slow: |-
     import { Editor } from "./editor"; // 400 KB, used on one page
 fast: |
-    button.addEventListener("click", async () => {
-      const { Editor } = await import("./editor");
-      new Editor(root);
-    });
+    const { Editor } = await import("./editor"); // on click
 lang: js
 spot: "Coverage panel: most of the main bundle unused on load"
 refs:
@@ -18,4 +15,4 @@ refs:
     - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/import
 ---
 
-Everything imported statically lands in the first bundle, so every visitor pays for the editor, the charts and the admin panel. A dynamic `import()` moves it into a separate chunk, fetched on the route or click that needs it. `React.lazy`, `defineAsyncComponent` and route-level splitting do the same.
+Everything imported statically ships to every visitor. A dynamic `import()` moves it into a chunk fetched only when it is needed.

@@ -1,16 +1,13 @@
 ---
-order: 5
+order: 6
 title: Hashed assets that are never cached
 chapter: loading
 metrics: [lcp]
 impact: medium
 slow: |-
-    Cache-Control: no-cache # app.3f9a1c.js, revalidated every visit
+    Cache-Control: no-cache # app.3f9a1c.js, asked for every visit
 fast: |
-    # hashed files never change: cache them forever
-    Cache-Control: public, max-age=31536000, immutable
-    # the HTML that names them: always ask
-    Cache-Control: no-cache
+    Cache-Control: max-age=31536000, immutable
 lang: http
 spot: "Lighthouse: “Serve static assets with an efficient cache policy”"
 refs:
@@ -18,4 +15,4 @@ refs:
     - https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Cache-Control
 ---
 
-A file with a content hash in its name never changes, yet without a long `max-age` every repeat visit asks for it again. Cache hashed files for a year with `immutable`, and keep the HTML on `no-cache` so a new deploy shows up at once.
+Every repeat visit asks again for a file whose name guarantees it never changes. Cache hashed files for a year; only the HTML that names them stays short-lived.

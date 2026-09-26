@@ -9,7 +9,7 @@ type Props = {
 };
 
 const { id, number } = Astro.props;
-const { kanji, target, title } = CHAPTERS[id];
+const { kanji, target, goal, title } = CHAPTERS[id];
 ---
 
 <header class="chapter-card">
@@ -19,7 +19,9 @@ const { kanji, target, title } = CHAPTERS[id];
 			<h2 id={`${id}-heading`} class="title">
 				{title}
 			</h2>
-			<p class="target">Target: {target.toLowerCase()}</p>
+			<p class="target">
+				Target: {target.toLowerCase()} · {goal}
+			</p>
 		</div>
 
 		<p class="kanji" lang="ja">

@@ -14,15 +14,32 @@ export type Chapter = {
 	kanji: string;
 	/** The name on the death list, struck through once its chapter is read. */
 	target: string;
+	/** What good looks like: the threshold, or the rule where there is none. */
+	goal: string;
 	title: string;
 };
 
 export const CHAPTERS: Record<ChapterId, Chapter> = {
-	loading: { kanji: "第一章", target: "Slow paint", title: "Page load" },
-	layout: { kanji: "第二章", target: "Layout shift", title: "Layout stability" },
-	rendering: { kanji: "第三章", target: "Dropped frames", title: "Rendering" },
-	interaction: { kanji: "第四章", target: "Frozen clicks", title: "Responsiveness" },
-	bundle: { kanji: "第五章", target: "The bundle", title: "Bundle size" },
+	loading: { kanji: "第一章", target: "Slow paint", goal: "LCP ≤ 2.5 s", title: "Page load" },
+	layout: {
+		kanji: "第二章",
+		target: "Layout shift",
+		goal: "CLS ≤ 0.1",
+		title: "Layout stability",
+	},
+	rendering: {
+		kanji: "第三章",
+		target: "Dropped frames",
+		goal: "16 ms a frame",
+		title: "Rendering",
+	},
+	interaction: {
+		kanji: "第四章",
+		target: "Frozen clicks",
+		goal: "INP ≤ 200 ms",
+		title: "Responsiveness",
+	},
+	bundle: { kanji: "第五章", target: "The bundle", goal: "No unused JS", title: "Bundle size" },
 };
 
 /** The Core Web Vitals, plus frame rate for what only hurts while moving. */
