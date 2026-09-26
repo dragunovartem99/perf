@@ -1,0 +1,225 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { render } from "astro:content";
+
+type Props = {
+	entry: CollectionEntry<"perf">;
+	/** 1-based position across the whole sheet. */
+	index: number;
+};
+
+const { entry, index } = Astro.props;
+const { title, metrics, impact, slow, fast, spot, refs } = entry.data;
+const { Content } = await render(entry);
+
+const pad = (n: number): string => String(n).padStart(2, "0");
+
+// "web.dev/optimize-lcp" rather than "web.dev" twice: enough to tell refs apart.
+function refLabel(ref: string): string {
+	const url = new URL(ref);
+	const slug = url.pathname.split("/").findLast(Boolean);
+	return slug ? `${url.hostname}/${slug}` : url.hostname;
+}
+---
+
+<article class="card" id={entry.id}>
+	<header class="head">
+		<p class="meta">
+			<a class="number" href={`#${entry.id}`}>
+				{pad(index)}
+			</a>
+			<span aria-hidden="true">·</span>
+			<span>{metrics.map((metric) => metric.toUpperCase()).join(", ")}</span>
+			<span aria-hidden="true">·</span>
+			<span>{impact} impact</span>
+		</p>
+		<h3 class="title">{title}</h3>
+	</header>
+
+	<div class="duel">
+		<figure class="panel is-slow">
+			<figcaption class="meta caption">Slow</figcaption>
+			<pre><code>{slow}</code></pre>
+		</figure>
+
+		<figure class="panel is-fast">
+			<figcaption class="meta caption">
+				Fast
+				{/* Revealed by the script: without JavaScript the text is still selectable. */}
+				<button class="copy" type="button" data-copy={fast.trim()} hidden>
+					Copy
+				</button>
+			</figcaption>
+			<pre><code>{fast.trim()}</code></pre>
+		</figure>
+	</div>
+
+	<div class="body">
+		<Content />
+		<p class="spot">
+			<span class="meta">Spot it</span> {spot}
+		</p>
+	</div>
+
+	<ul class="refs meta">
+		{refs.map((ref) => (
+			<li>
+				<a href={ref} rel="noreferrer noopener">
+					{refLabel(ref)}
+				</a>
+			</li>
+		))}
+	</ul>
+</article>
+
+<script>
+	const COPIED_MS = 1400;
+
+	for (const button of document.querySelectorAll<HTMLButtonElement>("button[data-copy]")) {
+		button.hidden = false;
+		button.addEventListener("click", async () => {
+			await navigator.clipboard.writeText(button.dataset.copy ?? "");
+			button.textContent = "Copied";
+			setTimeout(() => (button.textContent = "Copy"), COPIED_MS);
+		});
+	}
+</script>
+
+<style>
+	.card {
+		display: grid;
+		gap: var(--space-m);
+		padding-block: var(--space-xl);
+		border-top: 1px solid var(--color-ink-line);
+		scroll-margin-top: var(--space-l);
+	}
+
+	.head {
+		display: grid;
+		gap: var(--space-2xs);
+	}
+
+	.head .meta {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--space-xs);
+	}
+
+	.number {
+		font-variant-numeric: tabular-nums;
+		text-decoration: none;
+	}
+
+	.title {
+		font-size: var(--step-2);
+	}
+
+	.duel {
+		display: grid;
+		gap: var(--space-m);
+	}
+
+	@media (min-width: 60rem) {
+		.duel {
+			grid-template-columns: 1fr 1fr;
+		}
+	}
+
+	/* The slow code sits back in grey under a red label; the fix is the one in ink. */
+	.panel {
+		display: grid;
+		grid-template-rows: auto 1fr;
+		margin: 0;
+		min-width: 0;
+		border-radius: var(--radius);
+		overflow: hidden;
+	}
+
+	.is-slow {
+		background: var(--color-surface);
+		color: var(--color-ink-muted);
+	}
+
+	.is-fast {
+		background: var(--surface-dark);
+		color: var(--color-paper);
+	}
+
+	.is-slow .caption {
+		color: var(--color-red);
+		opacity: 1;
+	}
+
+	.caption {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: var(--space-s) var(--space-m) 0;
+		color: inherit;
+		opacity: 0.7;
+	}
+
+	pre {
+		margin: 0;
+		padding: var(--space-s) var(--space-m) var(--space-m);
+		font-size: var(--step--1);
+		line-height: 1.7;
+		/* Long lines wrap rather than scroll: a cheatsheet is read, not panned. */
+		white-space: pre-wrap;
+		overflow-wrap: break-word;
+	}
+
+	.copy {
+		padding: 0;
+		border: 0;
+		background: none;
+		color: inherit;
+		font: inherit;
+		text-decoration: underline;
+		text-underline-offset: 0.2em;
+		cursor: pointer;
+	}
+
+	.body {
+		max-width: var(--measure);
+		color: var(--color-ink-muted);
+	}
+
+	.body {
+		display: grid;
+		gap: var(--space-xs);
+	}
+
+	/* Where to look: a quiet tab in the slow panel's grey, sized to its text. */
+	.spot {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--space-2xs) var(--space-s);
+		align-items: baseline;
+		justify-self: start;
+		margin-block-start: var(--space-2xs);
+		padding: var(--space-xs) var(--space-s);
+		border-radius: var(--radius);
+		background: var(--color-surface);
+		color: var(--color-ink);
+		font-size: var(--step--1);
+	}
+
+	.body :global(code) {
+		padding: 0.1em 0.3em;
+		border-radius: 3px;
+		background: var(--color-surface);
+		color: var(--color-ink);
+		font-size: 0.88em;
+	}
+
+	.refs {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--space-2xs) var(--space-m);
+	}
+
+	.refs a::after {
+		content: " ↗";
+	}
+</style>

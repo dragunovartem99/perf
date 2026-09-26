@@ -1,0 +1,114 @@
+@import "./tokens.css";
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+html {
+	-webkit-text-size-adjust: 100%;
+	color-scheme: light;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+	html {
+		scroll-behavior: smooth;
+	}
+}
+
+body {
+	margin: 0;
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	background: var(--texture) var(--color-bg);
+	color: var(--color-ink);
+	font-family: var(--font);
+	font-size: var(--step-0);
+	line-height: 1.65;
+	-webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3 {
+	margin: 0;
+	font-weight: 600;
+	line-height: 1.1;
+	letter-spacing: -0.02em;
+	text-wrap: balance;
+}
+
+p {
+	margin: 0;
+	text-wrap: pretty;
+}
+
+pre,
+code {
+	font-family: var(--font-code);
+	/* In code meant to be copied, every character must look like what it is. */
+	font-variant-ligatures: none;
+}
+
+a {
+	color: inherit;
+	text-decoration-color: var(--color-ink-faint);
+	text-underline-offset: 0.2em;
+}
+
+a:hover {
+	text-decoration-color: currentColor;
+}
+
+:focus-visible {
+	outline: 2px solid var(--color-ink);
+	outline-offset: 3px;
+}
+
+::selection {
+	background: var(--color-ink);
+	color: var(--color-bg);
+}
+
+ul,
+ol {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.wrap {
+	width: 100%;
+	max-width: var(--content-width);
+	margin-inline: auto;
+	padding-inline: var(--space-m);
+}
+
+@media (min-width: 48rem) {
+	.wrap {
+		padding-inline: var(--space-l);
+	}
+}
+
+/* Small print: metadata, captions, the eyebrow over a heading. */
+.meta {
+	font-size: var(--step--1);
+	color: var(--color-ink-faint);
+}
+
+.skip-link {
+	position: absolute;
+	inset-inline-start: var(--space-m);
+	inset-block-start: var(--space-m);
+	z-index: 1000;
+	padding: var(--space-xs) var(--space-s);
+	background: var(--color-charcoal);
+	color: var(--color-bg);
+	transform: translateY(-200%);
+}
+
+.skip-link:focus-visible {
+	transform: none;
+}

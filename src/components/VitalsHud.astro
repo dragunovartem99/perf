@@ -1,0 +1,85 @@
+---
+/**
+ * The page's own Core Web Vitals, live, in the corner. Hidden until the script
+ * mounts it, since without JavaScript it could only ever read "—".
+ */
+const cells = [
+	{ metric: "lcp", label: "LCP" },
+	{ metric: "cls", label: "CLS" },
+	{ metric: "inp", label: "INP" },
+];
+---
+
+<aside id="vitals" class="hud" aria-label="This page's Core Web Vitals, measured live" hidden>
+	<p class="caption">This page</p>
+	<dl>
+		{cells.map(({ metric, label }) => (
+			<div>
+				<dt>{label}</dt>
+				<dd data-metric={metric}>—</dd>
+			</div>
+		))}
+	</dl>
+</aside>
+
+<style>
+	.hud {
+		position: fixed;
+		inset: auto var(--space-s) var(--space-s) auto;
+		z-index: 40;
+		display: flex;
+		gap: var(--space-s);
+		align-items: baseline;
+		padding: var(--space-2xs) var(--space-s);
+		border-radius: var(--radius);
+		background: var(--surface-dark);
+		color: var(--color-paper);
+		font-size: var(--step--1);
+		font-variant-numeric: tabular-nums;
+	}
+
+	.hud[hidden] {
+		display: none;
+	}
+
+	.caption {
+		color: var(--color-paper-muted);
+	}
+
+	dl {
+		display: flex;
+		gap: var(--space-s);
+		margin: 0;
+	}
+
+	dl div {
+		display: flex;
+		gap: var(--space-2xs);
+	}
+
+	dt {
+		color: var(--color-paper-muted);
+	}
+
+	dd {
+		margin: 0;
+		font-weight: 600;
+	}
+
+	/* Good reads plainly; anything worse is flagged by an underline, not a colour. */
+	[data-rating="needs-improvement"],
+	[data-rating="poor"] {
+		text-decoration: underline;
+		text-underline-offset: 0.2em;
+	}
+
+	[data-rating="poor"] {
+		text-decoration-style: wavy;
+	}
+
+	@media (max-width: 30rem) {
+		.caption {
+			display: none;
+		}
+	}
+</style>

@@ -1,0 +1,27 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { withBase } from "@/links";
+---
+
+<BaseLayout title="404 — PERF" description="Nothing here." noindex>
+	<div class="lost wrap">
+		<p class="meta">Chapter missing</p>
+		<h1 class="code">404</h1>
+		<p>This scene was cut from the final release.</p>
+		<a href={withBase("/")}>Back to the list</a>
+	</div>
+</BaseLayout>
+
+<style>
+	.lost {
+		display: grid;
+		gap: var(--space-m);
+		align-content: center;
+		min-height: 80vh;
+	}
+
+	.code {
+		font-size: var(--step-hero);
+		line-height: 0.85;
+	}
+</style>

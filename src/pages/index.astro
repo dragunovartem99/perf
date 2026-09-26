@@ -1,0 +1,109 @@
+---
+import { getCollection } from "astro:content";
+
+import ChapterCard from "@/components/ChapterCard.astro";
+import DeathList from "@/components/DeathList.astro";
+import PerfCard from "@/components/PerfCard.astro";
+import { CHAPTER_IDS } from "@/content.config";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+const entries = (await getCollection("perf")).toSorted((a, b) => a.data.order - b.data.order);
+
+const chapters = CHAPTER_IDS.map((id) => ({
+	id,
+	entries: entries.filter((entry) => entry.data.chapter === id),
+})).filter((chapter) => chapter.entries.length > 0);
+
+// Cards are numbered in the order they appear, which is by chapter first.
+const reading = chapters.flatMap((chapter) => chapter.entries);
+---
+
+<BaseLayout
+	title="Perf · where the milliseconds go"
+	description="Slow code, the fix, and why: LCP, layout shift, dropped frames, INP and bundle size, in five chapters."
+>
+	<header class="hero wrap" slot="header">
+		<div class="intro">
+			<p class="meta">Frontend performance cheatsheet · Vol. 1</p>
+			<h1 class="hero-title">PERF</h1>
+			<p class="lede">
+				Where the milliseconds go, what spends them, and the line that wins them back.
+			</p>
+		</div>
+		<DeathList />
+	</header>
+
+	{chapters.map(({ id, entries: items }, index) => (
+		<section id={id} class="chapter" data-chapter={id} aria-labelledby={`${id}-heading`}>
+			<ChapterCard id={id} number={index + 1} />
+			<div class="wrap">
+				{items.map((entry) => (
+					<PerfCard entry={entry} index={reading.indexOf(entry) + 1} />
+				))}
+			</div>
+		</section>
+	))}
+
+	<footer class="footer wrap" slot="footer">
+		<p>
+			The box in the corner is this page measuring itself — no framework, the fonts self-hosted,
+			GSAP loaded after the content, every tween on transform and opacity.
+		</p>
+		<p>
+			<a href="https://dragunov.dev">Artem Dragunov</a> ·{" "}
+			<a href="https://github.com/dragunovartem99/perf">source</a> ·{" "}
+			<a href="https://dragunovartem99.github.io/vulns">Vol. 2: vulns</a>
+		</p>
+	</footer>
+</BaseLayout>
+
+<style>
+	.hero {
+		display: grid;
+		gap: var(--space-xl);
+		padding-block: var(--space-xl) var(--space-2xl);
+	}
+
+	@media (min-width: 60rem) {
+		.hero {
+			grid-template-columns: 1fr 20rem;
+			align-items: end;
+		}
+	}
+
+	.intro {
+		display: grid;
+		gap: var(--space-m);
+	}
+
+	.hero-title {
+		/* At weight 600 Hanken's "P" carries 0.071em of side bearing — invisible
+		   in text, a visible indent at this size. Pulled back by that, less the
+		   ~1px the small copy's own letters keep, so the stems line up; the box is
+		   trimmed to the capitals where supported. */
+		margin-inline-start: -0.066em;
+		font-size: var(--step-hero);
+		line-height: 0.9;
+		letter-spacing: -0.04em;
+		text-box: trim-both cap alphabetic;
+	}
+
+	.lede {
+		max-width: 34ch;
+		font-size: var(--step-1);
+		color: var(--color-ink-muted);
+	}
+
+	.chapter .wrap {
+		padding-block-end: var(--space-xl);
+	}
+
+	.footer {
+		display: grid;
+		gap: var(--space-s);
+		padding-block: var(--space-xl) var(--space-2xl);
+		border-top: 1px solid var(--color-ink-line);
+		font-size: var(--step--1);
+		color: var(--color-ink-muted);
+	}
+</style>

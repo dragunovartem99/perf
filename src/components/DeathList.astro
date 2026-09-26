@@ -1,0 +1,96 @@
+---
+import { CHAPTER_IDS, CHAPTERS } from "@/content.config";
+
+/** Each name is struck through, pen-drawn by the motion script, once its chapter is read. */
+---
+
+<nav class="list" aria-labelledby="death-list">
+	<h2 id="death-list" class="meta heading">
+		Death list five
+	</h2>
+	<ol>
+		{CHAPTER_IDS.map((id, index) => (
+			<li data-target={id}>
+				<a href={`#${id}`}>
+					<span class="number">{index + 1}</span>
+					<span class="name">
+						{CHAPTERS[id].target}
+						<svg class="strike" viewBox="0 0 100 10" preserveAspectRatio="none" aria-hidden="true">
+							<path d="M1 6 C 18 3, 34 8, 52 5 S 84 3, 99 6" />
+						</svg>
+					</span>
+				</a>
+			</li>
+		))}
+	</ol>
+</nav>
+
+<style>
+	.list {
+		display: grid;
+		gap: var(--space-xs);
+		align-self: end;
+	}
+
+	.heading {
+		font-weight: 400;
+		letter-spacing: 0;
+	}
+
+	ol {
+		border-top: 1px solid var(--color-ink);
+	}
+
+	li {
+		border-bottom: 1px solid var(--color-ink-line);
+	}
+
+	a {
+		display: flex;
+		gap: var(--space-s);
+		align-items: baseline;
+		padding-block: var(--space-xs);
+		text-decoration: none;
+	}
+
+	.number {
+		min-width: 1.5ch;
+		font-size: var(--step--1);
+		color: var(--color-ink-faint);
+	}
+
+	.name {
+		position: relative;
+		font-size: var(--step-1);
+		transition: color var(--duration-strike) var(--ease);
+	}
+
+	/* A pen stroke through the name. Invisible until the motion script draws
+	   it — without JavaScript nothing is ever struck. */
+	.strike {
+		position: absolute;
+		inset: 35% -0.2em auto;
+		width: calc(100% + 0.4em);
+		height: 0.4em;
+		overflow: visible;
+		pointer-events: none;
+	}
+
+	.strike path {
+		fill: none;
+		stroke: var(--color-red);
+		stroke-width: 2.5;
+		stroke-linecap: round;
+		vector-effect: non-scaling-stroke;
+		visibility: hidden;
+	}
+
+	.is-dead .name {
+		color: var(--color-ink-faint);
+	}
+
+	a:hover .name {
+		text-decoration: underline;
+		text-underline-offset: 0.2em;
+	}
+</style>

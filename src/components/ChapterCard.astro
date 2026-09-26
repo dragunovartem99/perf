@@ -1,0 +1,65 @@
+---
+import type { ChapterId } from "@/content.config";
+import { CHAPTERS } from "@/content.config";
+
+type Props = {
+	id: ChapterId;
+	/** 1-based chapter number. */
+	number: number;
+};
+
+const { id, number } = Astro.props;
+const { kanji, target, title } = CHAPTERS[id];
+---
+
+<header class="chapter-card">
+	<div class="wrap inner">
+		<p class="kicker">
+			Chapter {number}{" "}
+			<span class="kanji" lang="ja">
+				{kanji}
+			</span>
+		</p>
+		<h2 id={`${id}-heading`} class="title">
+			{title}
+		</h2>
+		<p class="target">Target: {target.toLowerCase()}</p>
+	</div>
+</header>
+
+<style>
+	.chapter-card {
+		background: var(--surface-dark);
+		color: var(--color-paper);
+		overflow: hidden;
+	}
+
+	.inner {
+		display: grid;
+		gap: var(--space-xs);
+		padding-block: var(--space-2xl);
+	}
+
+	.kicker,
+	.target {
+		color: var(--color-paper-muted);
+	}
+
+	.kanji {
+		margin-inline-start: var(--space-xs);
+		color: var(--color-red-bright);
+	}
+
+	.title {
+		font-size: var(--step-3);
+	}
+
+	/* Held back for the motion script's entrance, so a card already on screen
+	   does not flash before it rises. Never without JavaScript, never under
+	   reduced motion, and released by `is-still` if the script fails to load. */
+	@media (scripting: enabled) and (prefers-reduced-motion: no-preference) {
+		:global(html:not(.is-still)) :is(.kicker, .title, .target) {
+			visibility: hidden;
+		}
+	}
+</style>

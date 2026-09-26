@@ -1,0 +1,81 @@
+---
+import { Font } from "astro:assets";
+
+import "@/styles/global.css";
+
+import VitalsHud from "@/components/VitalsHud.astro";
+import { withBase } from "@/links";
+
+type Props = {
+	title: string;
+	description: string;
+	noindex?: boolean;
+};
+
+const { title, description, noindex = false } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>{title}</title>
+		<meta name="description" content={description} />
+		<link rel="canonical" href={canonical} />
+		<link rel="icon" href={withBase("favicon.svg")} type="image/svg+xml" />
+		<meta name="theme-color" content="#f5f5f2" />
+		<meta name="referrer" content="no-referrer" />
+		{noindex && <meta name="robots" content="noindex" />}
+
+		<meta property="og:type" content="website" />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:url" content={canonical} />
+
+		<Font cssVariable="--font-sans" preload />
+		<Font cssVariable="--font-mono" preload />
+	</head>
+
+	<body>
+		<a class="skip-link" href="#main">
+			Skip to content
+		</a>
+
+		<slot name="header" />
+
+		<main id="main" tabindex="-1">
+			<slot />
+		</main>
+
+		<slot name="footer" />
+
+		<VitalsHud />
+
+		<script>
+			import { mountVitals } from "@/modules/vitals";
+
+			const hud = document.querySelector("#vitals");
+			if (hud instanceof HTMLElement) mountVitals({ root: hud });
+
+			// GSAP arrives in its own chunk, after the page is already readable.
+			try {
+				const { mountMotion } = await import("@/modules/motion");
+				mountMotion();
+			} catch {
+				// No motion after all: release anything held back for an entrance.
+				document.documentElement.classList.add("is-still");
+			}
+		</script>
+		<style>
+			main {
+				flex: 1;
+			}
+
+			main:focus {
+				outline: none;
+			}
+		</style>
+	</body>
+</html>
