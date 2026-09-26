@@ -20,7 +20,7 @@ const { kanji, target, goal, title } = CHAPTERS[id];
 				{title}
 			</h2>
 			<dl class="target">
-				<dt>Target</dt>
+				<dt>Problem</dt>
 				<dd>{target}</dd>
 				<dt>Good</dt>
 				<dd>{goal}</dd>
@@ -64,7 +64,7 @@ const { kanji, target, goal, title } = CHAPTERS[id];
 		font-size: var(--step-3);
 	}
 
-	/* Two labelled rows: the name on the death list, then the number that counts as good. */
+	/* Two labelled rows: the problem, named as on the death list, then the number that counts as good. */
 	.target {
 		display: grid;
 		grid-template-columns: auto 1fr;
