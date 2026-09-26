@@ -17,15 +17,30 @@ export default defineConfig({
 	// origin to connect to before the first paint.
 	fonts: [
 		{
-			provider: fontProviders.google(),
-			name: "Hanken Grotesk",
+			// The one text face: a Japanese gothic, for body, headings and kanji
+			// alike. Self-hosted, and subset to the page's own characters by
+			// `scripts/subset-font.py` — re-run it after adding a kanji.
+			provider: fontProviders.local(),
+			name: "Zen Kaku Gothic New",
 			cssVariable: "--font-sans",
-			weights: [400, 600],
-			styles: ["normal"],
-			subsets: ["latin"],
 			fallbacks: ["sans-serif"],
+			options: {
+				variants: [
+					{
+						src: ["./src/assets/fonts/zen-kaku-gothic-new-400.woff2"],
+						weight: 400,
+						style: "normal",
+					},
+					{
+						src: ["./src/assets/fonts/zen-kaku-gothic-new-500.woff2"],
+						weight: 500,
+						style: "normal",
+					},
+				],
+			},
 		},
 		{
+			// Code only: every character in a copied snippet must be unmistakable.
 			provider: fontProviders.google(),
 			name: "DM Mono",
 			cssVariable: "--font-mono",

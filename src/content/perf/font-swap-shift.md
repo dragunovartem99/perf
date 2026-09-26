@@ -14,10 +14,11 @@ fast: |
     @font-face {
       font-family: "Brand fallback";
       src: local("Arial");
-      size-adjust: 104%;     /* tuned to Brand's metrics */
+      size-adjust: 104%; /* tuned to Brand's metrics */
       ascent-override: 92%;
     }
     body { font-family: "Brand", "Brand fallback"; }
+lang: css
 spot: "Performance panel: a layout shift right as the font request finishes"
 refs:
     - https://developer.chrome.com/blog/font-fallbacks

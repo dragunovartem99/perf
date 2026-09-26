@@ -12,6 +12,8 @@ fast: |
       contain-intrinsic-size: auto 3rem;
     }
     /* or virtualise: render only the rows on screen */
+lang: js
+fastLang: css
 spot: "Lighthouse: “Avoid an excessive DOM size”"
 refs:
     - https://web.dev/articles/content-visibility

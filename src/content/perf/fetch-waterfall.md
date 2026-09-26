@@ -12,6 +12,7 @@ fast: |
     const [user, posts, ads] = await Promise.all([
       getUser(), getPosts(), getAds(),
     ]);
+lang: js
 spot: "Network panel: requests that start as the previous one ends"
 refs:
     - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all

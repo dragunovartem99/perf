@@ -5,12 +5,13 @@ chapter: loading
 metrics: [lcp]
 impact: medium
 slow: |-
-    Cache-Control: no-cache   # app.3f9a1c.js, revalidated every visit
+    Cache-Control: no-cache # app.3f9a1c.js, revalidated every visit
 fast: |
     # hashed files never change: cache them forever
     Cache-Control: public, max-age=31536000, immutable
     # the HTML that names them: always ask
     Cache-Control: no-cache
+lang: http
 spot: "Lighthouse: “Serve static assets with an efficient cache policy”"
 refs:
     - https://web.dev/articles/http-cache

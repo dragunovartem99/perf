@@ -11,6 +11,7 @@ fast: |
       const { Editor } = await import("./editor");
       new Editor(root);
     });
+lang: js
 spot: "Coverage panel: most of the main bundle unused on load"
 refs:
     - https://web.dev/articles/reduce-javascript-payloads-with-code-splitting

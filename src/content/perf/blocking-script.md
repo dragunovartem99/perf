@@ -10,6 +10,7 @@ slow: |-
 fast: |
     <script src="/app.js" defer></script>
     <script src="https://tags.example/a.js" async></script>
+lang: html
 spot: "Lighthouse: “Eliminate render-blocking resources”"
 refs:
     - https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/script

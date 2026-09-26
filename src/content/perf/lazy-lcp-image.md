@@ -9,6 +9,7 @@ slow: |-
 fast: |
     <img src="hero.avif" fetchpriority="high"
       width="1200" height="600" alt="…">
+lang: html
 spot: "Lighthouse: “Largest Contentful Paint image was lazily loaded”"
 refs:
     - https://web.dev/articles/optimize-lcp

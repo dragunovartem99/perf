@@ -1,0 +1,49 @@
+---
+import type { Lang } from "@/modules/highlight";
+import { highlight } from "@/modules/highlight";
+
+type Props = {
+	code: string;
+	lang: Lang;
+};
+
+/**
+ * A highlighted snippet, for the inside of a `<pre>`. Highlighted at build
+ * time into classed spans — no inline styles for the CSP to block, no script.
+ * The panel sets the palette: `--code-keyword`, `--code-literal`, `--code-comment`.
+ */
+const { code, lang } = Astro.props;
+const lines = await highlight({ code, lang });
+---
+
+<code>
+	{lines.map((line) => (
+		<span class="line">
+			{line.map(({ text, kind }) => (kind === "plain" ? text : <span class={kind}>{text}</span>))}
+		</span>
+	))}
+</code>
+
+<style>
+	/* A block per line, so a manual copy keeps the line breaks. A line too
+	   long for the panel wraps with a hanging indent, never back to column 0. */
+	.line {
+		display: block;
+		min-height: 1lh;
+		padding-inline-start: 4ch;
+		text-indent: -4ch;
+	}
+
+	.keyword {
+		color: var(--code-keyword);
+	}
+
+	.literal {
+		color: var(--code-literal);
+	}
+
+	.comment {
+		color: var(--code-comment);
+		font-style: italic;
+	}
+</style>

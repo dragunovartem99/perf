@@ -7,9 +7,10 @@ impact: high
 slow: |-
     hydrateRoot(document, <App />) // every static paragraph included
 fast: |
-    <Article />                          {/* HTML only, no JS */}
-    <Comments client:visible />          {/* hydrated on scroll */}
+    <Article />                 {/* HTML only, no JS */}
+    <Comments client:visible /> {/* hydrated on scroll */}
     <SearchBox client:idle />
+lang: jsx
 spot: "Performance panel: one long Evaluate Script task after first paint"
 refs:
     - https://web.dev/articles/rendering-on-the-web

@@ -9,6 +9,7 @@ slow: |-
 fast: |
     addEventListener("pagehide", saveDraft);
     // or visibilitychange → "hidden", the last reliable moment on mobile
+lang: js
 spot: "Application panel → Back/forward cache → Test"
 refs:
     - https://web.dev/articles/bfcache

@@ -2,6 +2,8 @@ import { glob } from "astro/loaders";
 import { z } from "astro/zod";
 import { defineCollection } from "astro:content";
 
+import { LANGS } from "@/modules/highlight";
+
 /** The five chapters, in reading order — one per name on the death list. */
 export const CHAPTER_IDS = ["loading", "layout", "rendering", "interaction", "bundle"] as const;
 
@@ -41,6 +43,10 @@ const perf = defineCollection({
 		/** The code that spends the time. Rendered as text, never as markup. */
 		slow: z.string(),
 		fast: z.string(),
+		/** What both snippets are written in, for highlighting… */
+		lang: z.enum(LANGS),
+		/** …unless the fix changes language, as when CSS replaces a script. */
+		fastLang: z.enum(LANGS).optional(),
 		/** Where it shows up: the DevTools panel or Lighthouse audit that names it. */
 		spot: z.string(),
 		refs: z.array(z.url()).min(1),

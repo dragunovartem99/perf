@@ -13,6 +13,7 @@ fast: |
     items.forEach((el, i) => {
       el.style.height = widths[i] / 2 + "px"; // then write all
     });
+lang: js
 spot: "Performance panel: purple Layout blocks flagged “Forced reflow”"
 refs:
     - https://web.dev/articles/avoid-large-complex-layouts-and-layout-thrashing

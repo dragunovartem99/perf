@@ -6,10 +6,11 @@ metrics: [lcp, inp]
 impact: medium
 slow: |-
     // browserslist
-    "> 0.25%, ie 11"   // ES5 output + core-js for everyone
+    "> 0.25%, ie 11" // ES5 output + core-js for everyone
 fast: |
     // browserslist
     "baseline widely available"
+lang: js
 spot: "Lighthouse: “Avoid serving legacy JavaScript to modern browsers”"
 refs:
     - https://web.dev/articles/publish-modern-javascript

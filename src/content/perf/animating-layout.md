@@ -8,6 +8,7 @@ slow: |-
     .drawer { transition: left 300ms; }  /* -20rem → 0 */
 fast: |
     .drawer { transition: transform 300ms; }  /* translateX(-100%) → none */
+lang: css
 spot: "Rendering drawer → Paint flashing: green on every frame"
 refs:
     - https://web.dev/articles/animations-guide

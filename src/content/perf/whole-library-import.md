@@ -10,6 +10,7 @@ slow: |-
 fast: |
     import { debounce } from "lodash-es"; // ES modules tree-shake
     const save = debounce(persist, 300);
+lang: js
 spot: "A bundle visualiser: one import, one giant block"
 refs:
     - https://web.dev/articles/reduce-javascript-payloads-with-tree-shaking
