@@ -19,9 +19,12 @@ const { kanji, target, goal, title } = CHAPTERS[id];
 			<h2 id={`${id}-heading`} class="title">
 				{title}
 			</h2>
-			<p class="target">
-				Target: {target.toLowerCase()} · {goal}
-			</p>
+			<dl class="target">
+				<dt>Target</dt>
+				<dd>{target}</dd>
+				<dt>Goal</dt>
+				<dd>{goal}</dd>
+			</dl>
 		</div>
 
 		<p class="kanji" lang="ja">
@@ -53,12 +56,25 @@ const { kanji, target, goal, title } = CHAPTERS[id];
 	}
 
 	.kicker,
-	.target {
+	dt {
 		color: var(--color-paper-muted);
 	}
 
 	.title {
 		font-size: var(--step-3);
+	}
+
+	/* Two labelled rows: the name on the death list, then the number that kills it. */
+	.target {
+		display: grid;
+		grid-template-columns: auto 1fr;
+		gap: var(--space-2xs) var(--space-m);
+		margin-block-start: var(--space-xs);
+	}
+
+	dd {
+		margin: 0;
+		color: var(--color-paper);
 	}
 
 	.kanji {
