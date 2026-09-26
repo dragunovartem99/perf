@@ -5,9 +5,9 @@ chapter: rendering
 metrics: [fps]
 impact: high
 slow: |-
-    .drawer { transition: left 300ms; }  /* -20rem → 0 */
+    .drawer { transition: left 300ms; }
 fast: |
-    .drawer { transition: transform 300ms; }  /* translateX(-100%) → none */
+    .drawer { transition: transform 300ms; }
 lang: css
 spot: "Rendering drawer → Paint flashing: green on every frame"
 refs:
@@ -15,4 +15,4 @@ refs:
     - https://web.dev/articles/stick-to-compositor-only-properties-and-manage-layer-count
 ---
 
-`left`, `top`, `width`, `height` and `margin` rerun layout and paint on every frame, on the main thread. `transform` and `opacity` run on the compositor and stay smooth even while JavaScript is busy. Every animation on this page uses only those two.
+`left`, `width` and `margin` rerun layout and paint on every frame. `transform` and `opacity` stay on the compositor, smooth even while the main thread is busy.

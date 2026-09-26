@@ -5,13 +5,10 @@ chapter: interaction
 metrics: [inp]
 impact: medium
 slow: |-
-    input.addEventListener("input", () => {
-      render(fuzzySearch(index, input.value)); // 200 ms per key
-    });
+    input.oninput = () => render(search(index, input.value)); // 200 ms
 fast: |
-    const worker = new Worker("search.js", { type: "module" });
-    input.addEventListener("input", () => worker.postMessage(input.value));
-    worker.addEventListener("message", (e) => render(e.data));
+    input.oninput = () => worker.postMessage(input.value);
+    worker.onmessage = (e) => render(e.data);
 lang: js
 spot: "Performance panel: long tasks on every keystroke"
 refs:
@@ -19,4 +16,4 @@ refs:
     - https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API
 ---
 
-Parsing, searching, sorting and diffing do not need the DOM, so they do not need the main thread. A Web Worker runs them in parallel and typing stays instant. Messages are copied: send the query and the results, not the whole index.
+Every keystroke waits for the search. Work that doesn't touch the DOM belongs in a Web Worker — send it the query, not the whole index.

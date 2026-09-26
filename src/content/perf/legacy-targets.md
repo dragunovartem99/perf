@@ -6,7 +6,7 @@ metrics: [lcp, inp]
 impact: medium
 slow: |-
     // browserslist
-    "> 0.25%, ie 11" // ES5 output + core-js for everyone
+    "> 0.25%, ie 11"
 fast: |
     // browserslist
     "baseline widely available"
@@ -17,4 +17,4 @@ refs:
     - https://web.dev/baseline
 ---
 
-Compiling to ES5 turns classes, `async` and spread into longer, slower helpers, and polyfills ship even to browsers that already have the feature. Target what your visitors run — Baseline is a sane default — and the same source comes out smaller and faster to parse.
+ES5 output turns classes and `async` into longer helpers and ships polyfills to browsers that have the feature. Target what visitors run — Baseline is a sane default.

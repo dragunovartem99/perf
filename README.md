@@ -8,12 +8,12 @@ Frontend performance cheatsheet — one card per slowdown: the slow code, the fa
 
 | Chapter          | Slowdown                             | Metrics  | Impact |
 | ---------------- | ------------------------------------ | -------- | ------ |
-| Page load        | Lazy-loaded hero image               | LCP      | high   |
-| Page load        | One image for every screen           | LCP      | high   |
+| Page load        | Rendering every request from scratch | LCP      | high   |
 | Page load        | Parser-blocking scripts              | LCP      | high   |
 | Page load        | Request waterfall                    | LCP      | high   |
+| Page load        | Lazy-loaded hero image               | LCP      | high   |
+| Page load        | One image for every screen           | LCP      | high   |
 | Page load        | Hashed assets that are never cached  | LCP      | medium |
-| Page load        | `unload` blocks the back button      | LCP      | medium |
 | Layout stability | Images without dimensions            | CLS      | high   |
 | Layout stability | Content injected above the fold      | CLS      | high   |
 | Layout stability | Web font reflow                      | CLS, LCP | medium |

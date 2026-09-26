@@ -6,15 +6,10 @@ metrics: [fps, inp]
 impact: medium
 slow: |-
     addEventListener("scroll", () => {
-      for (const el of sections) {
-        if (el.getBoundingClientRect().top < innerHeight) el.classList.add("seen");
-      }
+      if (el.getBoundingClientRect().top < innerHeight) show(el);
     });
 fast: |
-    const io = new IntersectionObserver((entries) => {
-      for (const e of entries) if (e.isIntersecting) e.target.classList.add("seen");
-    });
-    for (const el of sections) io.observe(el);
+    new IntersectionObserver(([e]) => e.isIntersecting && show(el)).observe(el);
 lang: js
 spot: "Performance panel: a scroll handler and layout in every frame"
 refs:
@@ -22,4 +17,4 @@ refs:
     - https://developer.chrome.com/docs/css-ui/scroll-driven-animations
 ---
 
-A scroll handler can run every frame, and each measurement after a class change forces layout. `IntersectionObserver` checks visibility as part of the browser's own rendering and calls you only when it changes. For scroll-linked effects, CSS scroll-driven animations need no script at all.
+The handler runs every frame and forces layout each time. `IntersectionObserver` calls you only when visibility changes; scroll-linked effects need no script at all.

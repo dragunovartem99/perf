@@ -6,16 +6,13 @@ metrics: [inp]
 impact: high
 slow: |-
     button.addEventListener("click", () => {
-      saveDraft(); // 300 ms of work
+      saveDraft(); // 300 ms
       status.textContent = "Saved";
     });
 fast: |
-    button.addEventListener("click", async () => {
-      status.textContent = "Saving…"; // respond first
-      await scheduler.yield();        // let that frame paint
-      saveDraft();
-      status.textContent = "Saved";
-    });
+    status.textContent = "Saving…";
+    await scheduler.yield(); // paint first
+    saveDraft();
 lang: js
 spot: "Performance panel: Interactions track, long processing duration"
 refs:
@@ -23,4 +20,4 @@ refs:
     - https://web.dev/articles/optimize-long-tasks
 ---
 
-INP measures from the input to the next painted frame, and a long task in the handler delays that frame. Update the UI first, yield so the browser can paint, then do the work. `scheduler.yield()` ships in Chromium and Firefox; Safari needs a `setTimeout` fallback.
+Nothing paints until the handler returns, so the click feels dead for 300 ms. Answer first, yield, then work — Safari still needs a `setTimeout` fallback for `scheduler.yield()`.
