@@ -9,7 +9,7 @@ type Props = {
 };
 
 const { id, number } = Astro.props;
-const { kanji, target, goal, title } = CHAPTERS[id];
+const { kanji, target, sign } = CHAPTERS[id];
 ---
 
 <header class="chapter-card">
@@ -17,14 +17,9 @@ const { kanji, target, goal, title } = CHAPTERS[id];
 		<div class="text">
 			<p class="kicker label">Chapter {number}</p>
 			<h2 id={`${id}-heading`} class="title">
-				{title}
+				{target}
 			</h2>
-			<dl class="target">
-				<dt>Problem</dt>
-				<dd>{target}</dd>
-				<dt>Good</dt>
-				<dd>{goal}</dd>
-			</dl>
+			<p class="subtitle">{sign}</p>
 		</div>
 
 		<p class="kanji" lang="ja">
@@ -56,25 +51,12 @@ const { kanji, target, goal, title } = CHAPTERS[id];
 	}
 
 	.kicker,
-	dt {
+	.subtitle {
 		color: var(--color-paper-muted);
 	}
 
 	.title {
 		font-size: var(--step-3);
-	}
-
-	/* Two labelled rows: the problem, named as on the death list, then the number that counts as good. */
-	.target {
-		display: grid;
-		grid-template-columns: auto 1fr;
-		gap: var(--space-2xs) var(--space-m);
-		margin-block-start: var(--space-xs);
-	}
-
-	dd {
-		margin: 0;
-		color: var(--color-paper);
 	}
 
 	.kanji {
@@ -89,7 +71,7 @@ const { kanji, target, goal, title } = CHAPTERS[id];
 	   does not flash before it rises. Never without JavaScript, never under
 	   reduced motion, and released by `is-still` if the script fails to load. */
 	@media (scripting: enabled) and (prefers-reduced-motion: no-preference) {
-		:global(html:not(.is-still)) :is(.kicker, .title, .target, .kanji) {
+		:global(html:not(.is-still)) :is(.kicker, .title, .subtitle, .kanji) {
 			visibility: hidden;
 		}
 	}

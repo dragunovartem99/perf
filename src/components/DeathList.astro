@@ -26,9 +26,8 @@ import { CHAPTER_IDS, CHAPTERS } from "@/content.config";
 			</li>
 		))}
 	</ol>
-	<p class="meta note">
-		“Good” must hold for three visits in four, on real devices. Lighthouse cannot measure INP.{" "}
-		<a href="https://web.dev/articles/vitals">web.dev/vitals</a>
+	<p class="meta">
+		Measured on real users. <a href="https://web.dev/articles/vitals">web.dev/vitals</a>
 	</p>
 </nav>
 
@@ -51,7 +50,7 @@ import { CHAPTER_IDS, CHAPTERS } from "@/content.config";
 		border-bottom: 1px solid var(--color-ink-line);
 	}
 
-	a {
+	ol a {
 		display: flex;
 		gap: var(--space-s);
 		align-items: baseline;
@@ -73,10 +72,6 @@ import { CHAPTER_IDS, CHAPTERS } from "@/content.config";
 
 	/* A pen stroke through the name. Invisible until the motion script draws
 	   it — without JavaScript nothing is ever struck. */
-	.note {
-		max-width: 34ch;
-	}
-
 	.strike {
 		position: absolute;
 		inset: 35% -0.2em auto;
@@ -99,11 +94,12 @@ import { CHAPTER_IDS, CHAPTERS } from "@/content.config";
 		color: var(--color-ink-faint);
 	}
 
-	.note a {
-		color: inherit;
+	/* The global underline is too faint on small print: hover darkens the text too. */
+	.meta a:hover {
+		color: var(--color-ink);
 	}
 
-	a:hover .name {
+	ol a:hover .name {
 		text-decoration: underline;
 		text-underline-offset: 0.2em;
 	}
