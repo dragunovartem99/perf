@@ -81,4 +81,5 @@ The code is rendered as text, never as markup.
 
 ## Deployment
 
-Every push to `main` builds and deploys to GitHub Pages via `.github/workflows/deploy.yaml`.
+Merging to `main` runs the same checks as pull requests, then builds and deploys to GitHub Pages via
+[pipes](https://github.com/dragunovartem99/pipes).
