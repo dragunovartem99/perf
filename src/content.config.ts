@@ -14,7 +14,7 @@ export type Chapter = {
 	kanji: string;
 	/** The name on the death list, struck through once its chapter is read. */
 	target: string;
-	/** What good looks like: the threshold, or the rule where there is none. */
+	/** What counts as good: the threshold, or the rule where there is none. */
 	goal: string;
 	title: string;
 };
