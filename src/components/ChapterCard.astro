@@ -9,7 +9,7 @@ type Props = {
 };
 
 const { id, number } = Astro.props;
-const { kanji, target, goal, title } = CHAPTERS[id];
+const { kanji, target, sign } = CHAPTERS[id];
 ---
 
 <header class="chapter-card">
@@ -17,11 +17,9 @@ const { kanji, target, goal, title } = CHAPTERS[id];
 		<div class="text">
 			<p class="kicker label">Chapter {number}</p>
 			<h2 id={`${id}-heading`} class="title">
-				{title}
+				{target}
 			</h2>
-			<p class="target">
-				Target: {target.toLowerCase()} · {goal}
-			</p>
+			<p class="subtitle">{sign}</p>
 		</div>
 
 		<p class="kanji" lang="ja">
@@ -53,7 +51,7 @@ const { kanji, target, goal, title } = CHAPTERS[id];
 	}
 
 	.kicker,
-	.target {
+	.subtitle {
 		color: var(--color-paper-muted);
 	}
 
@@ -73,7 +71,7 @@ const { kanji, target, goal, title } = CHAPTERS[id];
 	   does not flash before it rises. Never without JavaScript, never under
 	   reduced motion, and released by `is-still` if the script fails to load. */
 	@media (scripting: enabled) and (prefers-reduced-motion: no-preference) {
-		:global(html:not(.is-still)) :is(.kicker, .title, .target, .kanji) {
+		:global(html:not(.is-still)) :is(.kicker, .title, .subtitle, .kanji) {
 			visibility: hidden;
 		}
 	}

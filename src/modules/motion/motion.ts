@@ -51,14 +51,14 @@ function deathList(): void {
 }
 
 // A title card's heading rises line by line out of a mask, then its kicker,
-// target and kanji fade in after it, one by one — including a card already on screen at load, which
+// subtitle and kanji fade in after it, one by one — including a card already on screen at load, which
 // CSS keeps hidden until this runs (see ChapterCard.astro). `autoSplit`
 // re-splits once the web font lands or the width changes, so the lines always
 // match what is on screen.
 function chapterCards(): void {
 	for (const card of document.querySelectorAll<HTMLElement>(".chapter-card")) {
 		const title = card.querySelector(".title");
-		const rest = card.querySelectorAll(".kicker, .target, .kanji");
+		const rest = card.querySelectorAll(".kicker, .subtitle, .kanji");
 		if (!title) continue;
 
 		gsap.set([title, ...rest], { visibility: "visible" });
