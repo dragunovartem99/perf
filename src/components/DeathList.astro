@@ -27,7 +27,10 @@ import { CHAPTER_IDS, CHAPTERS } from "@/content.config";
 		))}
 	</ol>
 	<p class="meta">
-		Measured on real users. <a href="https://web.dev/articles/vitals">web.dev/vitals</a>
+		Measured on real users.{" "}
+		<a class="source" href="https://web.dev/articles/vitals">
+			web.dev/vitals
+		</a>
 	</p>
 </nav>
 
@@ -95,7 +98,7 @@ import { CHAPTER_IDS, CHAPTERS } from "@/content.config";
 	}
 
 	/* The global underline is too faint on small print: hover darkens the text too. */
-	.meta a:hover {
+	.source:hover {
 		color: var(--color-ink);
 	}
 
