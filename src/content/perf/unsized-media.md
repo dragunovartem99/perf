@@ -9,6 +9,7 @@ slow: |-
 fast: |
     <img src="banner.avif" width="1200" height="400" alt="…">
     /* with img { max-width: 100%; height: auto } it stays responsive */
+lang: html
 spot: "Performance panel: Layout shift clusters on image load"
 refs:
     - https://web.dev/articles/optimize-cls

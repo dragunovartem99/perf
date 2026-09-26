@@ -24,10 +24,19 @@ const reading = chapters.flatMap((chapter) => chapter.entries);
 >
 	<header class="hero wrap" slot="header">
 		<div class="intro">
-			<p class="meta">Frontend performance cheatsheet · Vol. 1</p>
-			<h1 class="hero-title">PERF</h1>
+			<p class="motto" lang="ja">
+				寸陰を惜しむ
+			</p>
+			<p class="meta label">Frontend performance cheatsheet · Vol. 1</p>
+			<h1 class="hero-title">
+				PERF<span class="sun" aria-hidden="true"></span>
+			</h1>
 			<p class="lede">
 				Where the milliseconds go, what spends them, and the line that wins them back.
+			</p>
+			<p class="meta gloss">
+				<span lang="ja">寸陰を惜しむ</span> (sun’in o oshimu) is a Japanese saying: don’t waste a
+				single moment.
 			</p>
 		</div>
 		<DeathList />
@@ -45,6 +54,9 @@ const reading = chapters.flatMap((chapter) => chapter.entries);
 	))}
 
 	<footer class="footer wrap" slot="footer">
+		<p class="end" lang="ja" aria-hidden="true">
+			終
+		</p>
 		<p>
 			The box in the corner is this page measuring itself — no framework, the fonts self-hosted,
 			GSAP loaded after the content, every tween on transform and opacity.
@@ -71,21 +83,51 @@ const reading = chapters.flatMap((chapter) => chapter.entries);
 		}
 	}
 
+	/* The motto runs down the left edge in a column of its own, as it would on
+	   a hanging scroll. */
 	.intro {
+		container-type: inline-size;
 		display: grid;
-		gap: var(--space-m);
+		grid-template-columns: auto 1fr;
+		gap: var(--space-m) var(--space-s);
+	}
+
+	@media (min-width: 48rem) {
+		.intro {
+			column-gap: var(--space-l);
+		}
+	}
+
+	.intro > :not(.motto) {
+		grid-column: 2;
+	}
+
+	.motto {
+		grid-row: 1 / span 4;
+		writing-mode: vertical-rl;
+		font-size: var(--step-1);
+		line-height: 1;
+		letter-spacing: 0.5em;
 	}
 
 	.hero-title {
-		/* At weight 600 Hanken's "P" carries 0.071em of side bearing — invisible
-		   in text, a visible indent at this size. Pulled back by that, less the
-		   ~1px the small copy's own letters keep, so the stems line up; the box is
-		   trimmed to the capitals where supported. */
-		margin-inline-start: -0.066em;
-		font-size: var(--step-hero);
-		line-height: 0.9;
-		letter-spacing: -0.04em;
+		/* Sized to its column, not the viewport: "PERF." is ~2.4em wide, so it
+		   spans what the motto and the death list leave it at every width. */
+		font-size: calc((100cqi - var(--space-xl)) / 2.42);
+		white-space: nowrap;
+		line-height: 0.8;
+		letter-spacing: -0.05em;
 		text-box: trim-both cap alphabetic;
+	}
+
+	/* The full stop is a red sun. */
+	.sun {
+		display: inline-block;
+		width: 0.14em;
+		aspect-ratio: 1;
+		margin-inline-start: 0.08em;
+		border-radius: 50%;
+		background: var(--color-red);
 	}
 
 	.lede {
@@ -105,5 +147,14 @@ const reading = chapters.flatMap((chapter) => chapter.entries);
 		border-top: 1px solid var(--color-ink-line);
 		font-size: var(--step--1);
 		color: var(--color-ink-muted);
+	}
+
+	/* 終, "the end", as the last frame of an old Japanese film prints it. */
+	.end {
+		justify-self: center;
+		padding-block-end: var(--space-l);
+		font-size: var(--step-3);
+		line-height: 1;
+		color: var(--color-ink);
 	}
 </style>

@@ -14,16 +14,17 @@ const { kanji, target, title } = CHAPTERS[id];
 
 <header class="chapter-card">
 	<div class="wrap inner">
-		<p class="kicker">
-			Chapter {number}{" "}
-			<span class="kanji" lang="ja">
-				{kanji}
-			</span>
+		<div class="text">
+			<p class="kicker label">Chapter {number}</p>
+			<h2 id={`${id}-heading`} class="title">
+				{title}
+			</h2>
+			<p class="target">Target: {target.toLowerCase()}</p>
+		</div>
+
+		<p class="kanji" lang="ja">
+			{kanji}
 		</p>
-		<h2 id={`${id}-heading`} class="title">
-			{title}
-		</h2>
-		<p class="target">Target: {target.toLowerCase()}</p>
 	</div>
 </header>
 
@@ -34,10 +35,19 @@ const { kanji, target, title } = CHAPTERS[id];
 		overflow: hidden;
 	}
 
+	/* Text on the left, the chapter number in a vertical column on the right,
+	   the way a title card is lettered in Japanese. */
 	.inner {
 		display: grid;
-		gap: var(--space-xs);
+		grid-template-columns: 1fr auto;
+		gap: var(--space-l) var(--space-m);
 		padding-block: var(--space-2xl);
+	}
+
+	.text {
+		display: grid;
+		gap: var(--space-xs);
+		align-content: start;
 	}
 
 	.kicker,
@@ -45,20 +55,23 @@ const { kanji, target, title } = CHAPTERS[id];
 		color: var(--color-paper-muted);
 	}
 
-	.kanji {
-		margin-inline-start: var(--space-xs);
-		color: var(--color-red-bright);
-	}
-
 	.title {
 		font-size: var(--step-3);
+	}
+
+	.kanji {
+		writing-mode: vertical-rl;
+		font-size: var(--step-2);
+		line-height: 1;
+		letter-spacing: 0.3em;
+		color: var(--color-red-bright);
 	}
 
 	/* Held back for the motion script's entrance, so a card already on screen
 	   does not flash before it rises. Never without JavaScript, never under
 	   reduced motion, and released by `is-still` if the script fails to load. */
 	@media (scripting: enabled) and (prefers-reduced-motion: no-preference) {
-		:global(html:not(.is-still)) :is(.kicker, .title, .target) {
+		:global(html:not(.is-still)) :is(.kicker, .title, .target, .kanji) {
 			visibility: hidden;
 		}
 	}

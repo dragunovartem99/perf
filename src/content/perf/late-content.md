@@ -9,6 +9,8 @@ slow: |-
 fast: |
     .promo-slot { min-height: 6rem; } /* reserve it up front */
     /* or take it out of flow: position: fixed */
+lang: js
+fastLang: css
 spot: "Performance panel: Layout shift clusters, culprit named"
 refs:
     - https://web.dev/articles/optimize-cls

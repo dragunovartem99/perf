@@ -2,6 +2,8 @@
 import type { CollectionEntry } from "astro:content";
 import { render } from "astro:content";
 
+import Code from "@/components/Code.astro";
+
 type Props = {
 	entry: CollectionEntry<"perf">;
 	/** 1-based position across the whole sheet. */
@@ -9,7 +11,7 @@ type Props = {
 };
 
 const { entry, index } = Astro.props;
-const { title, metrics, impact, slow, fast, spot, refs } = entry.data;
+const { title, metrics, impact, slow, fast, lang, fastLang = lang, spot, refs } = entry.data;
 const { Content } = await render(entry);
 
 const pad = (n: number): string => String(n).padStart(2, "0");
@@ -24,7 +26,7 @@ function refLabel(ref: string): string {
 
 <article class="card" id={entry.id}>
 	<header class="head">
-		<p class="meta">
+		<p class="meta label">
 			<a class="number" href={`#${entry.id}`}>
 				{pad(index)}
 			</a>
@@ -38,26 +40,26 @@ function refLabel(ref: string): string {
 
 	<div class="duel">
 		<figure class="panel is-slow">
-			<figcaption class="meta caption">Slow</figcaption>
-			<pre><code>{slow}</code></pre>
+			<figcaption class="meta label caption">Slow</figcaption>
+			<pre><Code code={slow} lang={lang} /></pre>
 		</figure>
 
 		<figure class="panel is-fast">
-			<figcaption class="meta caption">
+			<figcaption class="meta label caption">
 				Fast
 				{/* Revealed by the script: without JavaScript the text is still selectable. */}
 				<button class="copy" type="button" data-copy={fast.trim()} hidden>
 					Copy
 				</button>
 			</figcaption>
-			<pre><code>{fast.trim()}</code></pre>
+			<pre><Code code={fast.trim()} lang={fastLang} /></pre>
 		</figure>
 	</div>
 
 	<div class="body">
 		<Content />
 		<p class="spot">
-			<span class="meta">Spot it</span> {spot}
+			<span class="meta label">Spot it</span> {spot}
 		</p>
 	</div>
 
@@ -135,12 +137,20 @@ function refLabel(ref: string): string {
 		overflow: hidden;
 	}
 
+	/* Highlighting in ink and vermilion, like a corrected manuscript: keywords
+	   in red, literals and comments stepped back — each clear of 4.5:1. */
 	.is-slow {
+		--code-keyword: var(--color-red);
+		--code-literal: var(--color-ink-muted);
+		--code-comment: var(--color-ink-faint);
 		background: var(--color-surface);
-		color: var(--color-ink-muted);
+		color: var(--color-ink);
 	}
 
 	.is-fast {
+		--code-keyword: var(--color-red-bright);
+		--code-literal: var(--color-paper-muted);
+		--code-comment: var(--color-paper-muted);
 		background: var(--surface-dark);
 		color: var(--color-paper);
 	}
@@ -175,6 +185,8 @@ function refLabel(ref: string): string {
 		background: none;
 		color: inherit;
 		font: inherit;
+		letter-spacing: inherit;
+		text-transform: inherit;
 		text-decoration: underline;
 		text-underline-offset: 0.2em;
 		cursor: pointer;
@@ -220,6 +232,6 @@ function refLabel(ref: string): string {
 	}
 
 	.refs a::after {
-		content: " ↗";
+		content: " →";
 	}
 </style>

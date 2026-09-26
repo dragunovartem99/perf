@@ -15,6 +15,7 @@ fast: |
       for (const e of entries) if (e.isIntersecting) e.target.classList.add("seen");
     });
     for (const el of sections) io.observe(el);
+lang: js
 spot: "Performance panel: a scroll handler and layout in every frame"
 refs:
     - https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API

@@ -11,6 +11,7 @@ fast: |
       srcset="photo-400w.avif 400w, photo-800w.avif 800w,
               photo-1600w.avif 1600w"
       sizes="(min-width: 60rem) 50vw, 100vw">
+lang: html
 spot: "Lighthouse: “Properly size images”"
 refs:
     - https://developer.mozilla.org/en-US/docs/Web/HTML/Guides/Responsive_images

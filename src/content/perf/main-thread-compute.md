@@ -12,6 +12,7 @@ fast: |
     const worker = new Worker("search.js", { type: "module" });
     input.addEventListener("input", () => worker.postMessage(input.value));
     worker.addEventListener("message", (e) => render(e.data));
+lang: js
 spot: "Performance panel: long tasks on every keystroke"
 refs:
     - https://web.dev/articles/off-main-thread

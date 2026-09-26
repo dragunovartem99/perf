@@ -16,6 +16,7 @@ fast: |
       saveDraft();
       status.textContent = "Saved";
     });
+lang: js
 spot: "Performance panel: Interactions track, long processing duration"
 refs:
     - https://web.dev/articles/optimize-inp

@@ -5,14 +5,17 @@ import { CHAPTER_IDS, CHAPTERS } from "@/content.config";
 ---
 
 <nav class="list" aria-labelledby="death-list">
-	<h2 id="death-list" class="meta heading">
+	<h2 id="death-list" class="meta label heading">
 		Death list five
 	</h2>
 	<ol>
-		{CHAPTER_IDS.map((id, index) => (
+		{CHAPTER_IDS.map((id) => (
 			<li data-target={id}>
 				<a href={`#${id}`}>
-					<span class="number">{index + 1}</span>
+					{/* 第一章 → 一: the list already reads in order, so the numeral is decoration. */}
+					<span class="number" lang="ja" aria-hidden="true">
+						{CHAPTERS[id].kanji.slice(1, -1)}
+					</span>
 					<span class="name">
 						{CHAPTERS[id].target}
 						<svg class="strike" viewBox="0 0 100 10" preserveAspectRatio="none" aria-hidden="true">
@@ -33,8 +36,7 @@ import { CHAPTER_IDS, CHAPTERS } from "@/content.config";
 	}
 
 	.heading {
-		font-weight: 400;
-		letter-spacing: 0;
+		font-weight: 500;
 	}
 
 	ol {
@@ -54,8 +56,8 @@ import { CHAPTER_IDS, CHAPTERS } from "@/content.config";
 	}
 
 	.number {
-		min-width: 1.5ch;
-		font-size: var(--step--1);
+		min-width: 1.5em;
+		font-size: var(--step-0);
 		color: var(--color-ink-faint);
 	}
 
