@@ -1,9 +1,8 @@
 ---
-order: 2
 title: Redirects before the page
-chapter: loading
-phase: ttfb
-metrics: [lcp]
+chapter: ttfb
+phase: redirect
+metrics: [ttfb, fcp, lcp]
 impact: medium
 slow: |-
     <a href="http://shop.example/sale">Sale</a>

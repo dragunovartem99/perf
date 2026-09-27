@@ -7,7 +7,7 @@ export type PerfSource = {
 	data: {
 		title: string;
 		chapter: string;
-		phase: string;
+		phase?: string;
 		metrics: string[];
 		impact: Severity;
 		slow: string;

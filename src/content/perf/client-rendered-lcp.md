@@ -1,9 +1,8 @@
 ---
-order: 4
 title: Content only JavaScript can render
-chapter: loading
-phase: load-delay
-metrics: [lcp]
+chapter: lcp
+phase: render-delay
+metrics: [lcp, fcp]
 impact: high
 slow: |-
     <div id="root"></div>
@@ -19,8 +18,8 @@ detect:
     - 'createApp\('
 fineWhen: "The app sits behind a login and its shell paints something useful at once, or the framework already prerenders the HTML."
 refs:
-    - https://web.dev/articles/rendering-on-the-web
     - https://web.dev/articles/optimize-lcp
+    - https://web.dev/articles/rendering-on-the-web
 ---
 
 An empty `<div>` gives the browser nothing to paint and nothing to preload. The bundle downloads, runs, fetches its data, and only then asks for the hero. Prerender or server-render the HTML; the script can still take over.

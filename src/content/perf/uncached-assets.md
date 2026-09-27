@@ -1,9 +1,8 @@
 ---
-order: 10
 title: Hashed assets that are never cached
-chapter: loading
+chapter: lcp
 phase: load-duration
-metrics: [lcp]
+metrics: [lcp, fcp]
 impact: medium
 slow: |-
     Cache-Control: no-cache # app.3f9a1c.js, asked for every visit
@@ -17,6 +16,7 @@ detect:
     - "no-cache"
 fineWhen: "The file's name has no content hash — `index.html`, `favicon.ico` — so it has to revalidate."
 refs:
+    - https://web.dev/articles/optimize-lcp
     - https://web.dev/articles/http-cache
     - https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Cache-Control
 ---

@@ -1,9 +1,8 @@
 ---
-order: 2
 title: Importing through a barrel file
-chapter: bundle
-phase: dependencies
-metrics: [lcp, inp]
+chapter: inp
+phase: input-delay
+metrics: [inp, lcp]
 impact: medium
 slow: |-
     import { Button } from "@/components"; // index.ts re-exports 200 modules
@@ -17,6 +16,7 @@ detect:
     - 'from ["'']@/\w+["'']'
 fineWhen: 'The package is marked `"sideEffects": false` and the bundle report shows only what was imported.'
 refs:
+    - https://web.dev/articles/script-evaluation-and-long-tasks
     - https://vite.dev/guide/performance
     - https://webpack.js.org/guides/tree-shaking/
 ---

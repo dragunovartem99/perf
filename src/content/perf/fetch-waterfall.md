@@ -1,8 +1,7 @@
 ---
-order: 6
 title: Request waterfall
-chapter: loading
-phase: load-delay
+chapter: lcp
+phase: render-delay
 metrics: [lcp]
 impact: high
 slow: |-
@@ -17,8 +16,8 @@ detect:
     - "@import"
 fineWhen: "The second request needs the first one's result."
 refs:
-    - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all
     - https://web.dev/articles/optimize-lcp
+    - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all
     - https://web.dev/articles/preload-scanner
 ---
 

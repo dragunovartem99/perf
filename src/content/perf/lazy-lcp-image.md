@@ -1,7 +1,6 @@
 ---
-order: 5
 title: Lazy-loaded hero image
-chapter: loading
+chapter: lcp
 phase: load-delay
 metrics: [lcp]
 impact: high

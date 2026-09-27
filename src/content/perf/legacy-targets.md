@@ -1,9 +1,8 @@
 ---
-order: 5
 title: Transpiling for browsers nobody uses
-chapter: bundle
-phase: targets
-metrics: [lcp, inp]
+chapter: inp
+phase: input-delay
+metrics: [inp, lcp]
 impact: medium
 slow: |-
     // browserslist
@@ -20,6 +19,7 @@ detect:
     - "@babel/preset-env"
 fineWhen: "Analytics show real traffic from those browsers, and they get a separate legacy build."
 refs:
+    - https://web.dev/articles/script-evaluation-and-long-tasks
     - https://web.dev/articles/publish-modern-javascript
     - https://web.dev/baseline
 ---

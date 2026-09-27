@@ -44,9 +44,13 @@ function refLabel(ref: string): string {
 				{pad(index)}
 			</a>
 			<span aria-hidden="true">·</span>
+			{phaseLabel({ chapter, phase }) && (
+				<>
+					<span>{phaseLabel({ chapter, phase })}</span>
+					<span aria-hidden="true">·</span>
+				</>
+			)}
 			<span>{metrics.map((metric) => metric.toUpperCase()).join(", ")}</span>
-			<span aria-hidden="true">·</span>
-			<span>{phaseLabel({ chapter, phase })}</span>
 			<span aria-hidden="true">·</span>
 			<span>{impact} impact</span>
 		</p>

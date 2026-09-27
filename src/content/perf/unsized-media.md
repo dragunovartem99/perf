@@ -1,7 +1,6 @@
 ---
-order: 1
 title: Images without dimensions
-chapter: layout
+chapter: cls
 phase: media
 metrics: [cls]
 impact: high

@@ -1,7 +1,6 @@
 ---
-order: 3
 title: Long task in a click handler
-chapter: interaction
+chapter: inp
 phase: processing
 metrics: [inp]
 impact: high

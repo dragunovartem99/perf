@@ -1,9 +1,8 @@
 ---
-order: 3
 title: Three libraries for one job
-chapter: bundle
-phase: dependencies
-metrics: [lcp, inp]
+chapter: inp
+phase: input-delay
+metrics: [inp, lcp]
 impact: medium
 slow: |-
     { "dependencies": { "moment": "^2.30", "dayjs": "^1.11", "date-fns": "^4.1" } }
@@ -18,6 +17,7 @@ detect:
     - '"(axios|ky|superagent)"'
 fineWhen: "Only one of them reaches the client bundle; the others are dev or server dependencies."
 refs:
+    - https://web.dev/articles/script-evaluation-and-long-tasks
     - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl
     - https://docs.npmjs.com/cli/commands/npm-dedupe
 ---

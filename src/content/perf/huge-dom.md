@@ -1,9 +1,8 @@
 ---
-order: 4
 title: Rendering what nobody sees
-chapter: rendering
-phase: style
-metrics: [fps, inp]
+chapter: inp
+phase: presentation-delay
+metrics: [inp]
 impact: medium
 slow: |-
     list.append(...rows) // 10 000 rows, all rendered
@@ -18,6 +17,7 @@ detect:
     - '\{\w+\.map\('
 fineWhen: "The list stays in the low hundreds of rows, or it is already virtualised or paginated."
 refs:
+    - https://web.dev/articles/dom-size-and-interactivity
     - https://web.dev/articles/content-visibility
     - https://developer.mozilla.org/en-US/docs/Web/CSS/content-visibility
 ---

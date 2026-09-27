@@ -1,9 +1,8 @@
 ---
-order: 1
 title: Rendering every request from scratch
-chapter: loading
-phase: ttfb
-metrics: [lcp]
+chapter: ttfb
+phase: request
+metrics: [ttfb, fcp, lcp]
 impact: high
 slow: |-
     Cache-Control: no-store # the origin rebuilds the HTML every visit

@@ -1,9 +1,8 @@
 ---
-order: 5
 title: Layout thrashing
-chapter: rendering
-phase: layout
-metrics: [fps, inp]
+chapter: inp
+phase: processing
+metrics: [inp]
 impact: high
 slow: |-
     for (const el of items) el.style.height = el.offsetWidth / 2 + "px";
@@ -19,6 +18,7 @@ detect:
     - "scroll(Top|Height)"
 fineWhen: "The read happens once per frame, before any write — not inside a loop that also writes."
 refs:
+    - https://web.dev/articles/optimize-inp
     - https://web.dev/articles/avoid-large-complex-layouts-and-layout-thrashing
     - https://gist.github.com/paulirish/5d52fb081b3570c81e3a
 ---

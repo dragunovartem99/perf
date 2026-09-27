@@ -1,9 +1,7 @@
 ---
-order: 11
 title: Parser-blocking scripts
-chapter: loading
-phase: render-delay
-metrics: [lcp]
+chapter: fcp
+metrics: [fcp, lcp]
 impact: high
 slow: |-
     <script src="/app.js"></script>
@@ -15,6 +13,7 @@ detect:
     - '<script\s[^>]*src='
 fineWhen: 'It has `defer`, `async` or `type="module"` (modules defer by default), or it sits at the end of `<body>`.'
 refs:
+    - https://web.dev/articles/fcp
     - https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/script
     - https://web.dev/articles/efficiently-load-third-party-javascript
 ---

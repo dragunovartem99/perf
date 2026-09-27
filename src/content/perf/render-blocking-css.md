@@ -1,9 +1,7 @@
 ---
-order: 12
 title: One stylesheet for the whole site
-chapter: loading
-phase: render-delay
-metrics: [lcp]
+chapter: fcp
+metrics: [fcp, lcp]
 impact: medium
 slow: |-
     <link rel="stylesheet" href="/site.css"> <!-- 300 KB, every page -->
@@ -16,6 +14,7 @@ detect:
     - 'import ["''][^"'']+\.css["'']'
 fineWhen: "The stylesheet is a few tens of KB compressed, or the build already splits it by route."
 refs:
+    - https://web.dev/articles/fcp
     - https://web.dev/articles/extract-critical-css
     - https://developer.chrome.com/docs/devtools/coverage
 ---

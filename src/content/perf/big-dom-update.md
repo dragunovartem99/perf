@@ -1,8 +1,7 @@
 ---
-order: 6
 title: Thousands of rows in one click
-chapter: interaction
-phase: presentation
+chapter: inp
+phase: presentation-delay
 metrics: [inp]
 impact: medium
 slow: |-
@@ -17,8 +16,8 @@ detect:
     - '\.append\(\.\.\.'
 fineWhen: "The update adds a few hundred nodes or fewer."
 refs:
-    - https://web.dev/articles/optimize-inp
     - https://web.dev/articles/dom-size-and-interactivity
+    - https://web.dev/articles/optimize-inp
 ---
 
 The handler is quick; styling, laying out and painting 5 000 new rows is not, and the next frame waits for all of it. Render what fits on screen and add the rest as the reader scrolls.

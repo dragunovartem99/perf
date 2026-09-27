@@ -1,9 +1,8 @@
 ---
-order: 4
 title: One bundle for every route
-chapter: bundle
-phase: splitting
-metrics: [lcp, inp]
+chapter: inp
+phase: input-delay
+metrics: [inp, lcp]
 impact: high
 slow: |-
     import { Editor } from "./editor"; // 400 KB, used on one page
@@ -15,6 +14,7 @@ detect:
     - 'import \{?\s*\w*(Editor|Chart|Map|Modal|Dialog|Player|Markdown)\w*'
 fineWhen: "Every route renders the module on first paint."
 refs:
+    - https://web.dev/articles/script-evaluation-and-long-tasks
     - https://web.dev/articles/reduce-javascript-payloads-with-code-splitting
     - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/import
 ---

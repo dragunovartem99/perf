@@ -1,9 +1,8 @@
 ---
-order: 1
 title: Importing the whole library
-chapter: bundle
-phase: dependencies
-metrics: [lcp, inp]
+chapter: inp
+phase: input-delay
+metrics: [inp, lcp]
 impact: high
 slow: |-
     import _ from "lodash";
@@ -17,6 +16,7 @@ detect:
     - 'require\(["'']lodash["'']\)'
 fineWhen: "The package is an ES module marked `sideEffects: false`, and the bundle report shows the import costs a few KB."
 refs:
+    - https://web.dev/articles/script-evaluation-and-long-tasks
     - https://web.dev/articles/reduce-javascript-payloads-with-tree-shaking
 ---
 

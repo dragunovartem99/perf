@@ -1,7 +1,6 @@
 ---
-order: 8
 title: One image for every screen
-chapter: loading
+chapter: lcp
 phase: load-duration
 metrics: [lcp]
 impact: high
@@ -18,6 +17,7 @@ detect:
     - 'background(-image)?:\s*url\('
 fineWhen: "It has `srcset` and `sizes`, an image CDN or framework component resizes it, or it is an SVG."
 refs:
+    - https://web.dev/articles/optimize-lcp
     - https://developer.mozilla.org/en-US/docs/Web/HTML/Guides/Responsive_images
     - https://web.dev/learn/images
 ---

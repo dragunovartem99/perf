@@ -1,7 +1,6 @@
 ---
-order: 4
 title: Heavy work on the main thread
-chapter: interaction
+chapter: inp
 phase: processing
 metrics: [inp]
 impact: medium
@@ -17,6 +16,7 @@ detect:
     - 'addEventListener\(["''](input|keyup|keydown)'
 fineWhen: "The data is small enough that the work stays under 50 ms on a mid-range phone."
 refs:
+    - https://web.dev/articles/optimize-inp
     - https://web.dev/articles/off-main-thread
     - https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API
 ---

@@ -1,7 +1,6 @@
 ---
-order: 2
 title: Third-party widgets at startup
-chapter: interaction
+chapter: inp
 phase: input-delay
 metrics: [inp, lcp]
 impact: high
@@ -22,6 +21,7 @@ detect:
     - "intercom|hotjar|optimizely|hubspot|zendesk"
 fineWhen: "The page cannot work without the script — consent, payments — or it waits for idle time before doing anything."
 refs:
+    - https://web.dev/articles/optimize-input-delay
     - https://web.dev/articles/embed-best-practices
     - https://web.dev/articles/optimize-inp
 ---

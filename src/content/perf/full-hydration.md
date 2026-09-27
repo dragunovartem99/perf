@@ -1,7 +1,6 @@
 ---
-order: 1
 title: Hydrating the whole page
-chapter: interaction
+chapter: inp
 phase: input-delay
 metrics: [inp]
 impact: high
@@ -18,6 +17,7 @@ detect:
     - 'createSSRApp\('
 fineWhen: "The page is an app that is interactive throughout, or the framework already hydrates selectively — islands, server components."
 refs:
+    - https://web.dev/articles/script-evaluation-and-long-tasks
     - https://web.dev/articles/rendering-on-the-web
     - https://docs.astro.build/en/concepts/islands/
 ---
