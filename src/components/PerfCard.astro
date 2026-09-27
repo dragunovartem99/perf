@@ -3,6 +3,7 @@ import type { CollectionEntry } from "astro:content";
 import { render } from "astro:content";
 
 import Code from "@/components/Code.astro";
+import { phaseLabel } from "@/taxonomy";
 
 type Props = {
 	entry: CollectionEntry<"perf">;
@@ -11,7 +12,19 @@ type Props = {
 };
 
 const { entry, index } = Astro.props;
-const { title, metrics, impact, slow, fast, lang, fastLang = lang, spot, refs } = entry.data;
+const {
+	title,
+	chapter,
+	phase,
+	metrics,
+	impact,
+	slow,
+	fast,
+	lang,
+	fastLang = lang,
+	spot,
+	refs,
+} = entry.data;
 const { Content } = await render(entry);
 
 const pad = (n: number): string => String(n).padStart(2, "0");
@@ -31,6 +44,12 @@ function refLabel(ref: string): string {
 				{pad(index)}
 			</a>
 			<span aria-hidden="true">·</span>
+			{phaseLabel({ chapter, phase }) && (
+				<>
+					<span>{phaseLabel({ chapter, phase })}</span>
+					<span aria-hidden="true">·</span>
+				</>
+			)}
 			<span>{metrics.map((metric) => metric.toUpperCase()).join(", ")}</span>
 			<span aria-hidden="true">·</span>
 			<span>{impact} impact</span>

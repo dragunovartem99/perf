@@ -1,7 +1,7 @@
 ---
-order: 4
 title: Lazy-loaded hero image
-chapter: loading
+chapter: lcp
+phase: load-delay
 metrics: [lcp]
 impact: high
 slow: |-
@@ -9,7 +9,11 @@ slow: |-
 fast: |
     <img src="hero.avif" fetchpriority="high" alt="…">
 lang: html
-spot: "Lighthouse: “Largest Contentful Paint image was lazily loaded”"
+spot: "Lighthouse: “LCP request discovery”"
+detect:
+    - 'loading=["'']lazy'
+    - 'loading:\s*["'']lazy'
+fineWhen: "The image starts below the fold on every viewport."
 refs:
     - https://web.dev/articles/optimize-lcp
     - https://web.dev/articles/fetch-priority

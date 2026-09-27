@@ -1,8 +1,8 @@
 ---
-order: 2
 title: One bundle for every route
-chapter: bundle
-metrics: [lcp, inp]
+chapter: inp
+phase: input-delay
+metrics: [inp, lcp]
 impact: high
 slow: |-
     import { Editor } from "./editor"; // 400 KB, used on one page
@@ -10,9 +10,13 @@ fast: |
     const { Editor } = await import("./editor"); // on click
 lang: js
 spot: "Coverage panel: most of the main bundle unused on load"
+detect:
+    - 'import \{?\s*\w*(Editor|Chart|Map|Modal|Dialog|Player|Markdown)\w*'
+fineWhen: "Every route renders the module on first paint."
 refs:
+    - https://web.dev/articles/script-evaluation-and-long-tasks
     - https://web.dev/articles/reduce-javascript-payloads-with-code-splitting
     - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/import
 ---
 
-Everything imported statically ships to every visitor. A dynamic `import()` moves it into a chunk fetched only when it is needed.
+A static import ships 400 KB to every visitor on every route. A dynamic `import()` moves it into a chunk fetched only when needed.

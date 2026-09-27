@@ -1,7 +1,7 @@
 ---
-order: 3
 title: Hydrating the whole page
-chapter: interaction
+chapter: inp
+phase: input-delay
 metrics: [inp]
 impact: high
 slow: |-
@@ -11,7 +11,13 @@ fast: |
     <Comments client:visible />
 lang: jsx
 spot: "Performance panel: one long Evaluate Script task after first paint"
+detect:
+    - 'hydrateRoot\('
+    - "client:load"
+    - 'createSSRApp\('
+fineWhen: "The page is an app that is interactive throughout, or the framework already hydrates selectively — islands, server components."
 refs:
+    - https://web.dev/articles/script-evaluation-and-long-tasks
     - https://web.dev/articles/rendering-on-the-web
     - https://docs.astro.build/en/concepts/islands/
 ---

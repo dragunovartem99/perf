@@ -4,10 +4,10 @@ import { getCollection } from "astro:content";
 import ChapterCard from "@/components/ChapterCard.astro";
 import DeathList from "@/components/DeathList.astro";
 import PerfCard from "@/components/PerfCard.astro";
-import { CHAPTER_IDS } from "@/content.config";
+import { CHAPTER_IDS, pageOrder } from "@/taxonomy";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 
-const entries = (await getCollection("perf")).toSorted((a, b) => a.data.order - b.data.order);
+const entries = pageOrder(await getCollection("perf"));
 
 const chapters = CHAPTER_IDS.map((id) => ({
 	id,
@@ -20,7 +20,7 @@ const reading = chapters.flatMap((chapter) => chapter.entries);
 
 <BaseLayout
 	title="Perf · where the milliseconds go"
-	description="Slow code, the fix, and why: LCP, layout shift, dropped frames, INP and bundle size, in five chapters."
+	description="Slow code, the fix, and why, filed under the five Web Vitals in the order a page load reaches them: TTFB, FCP, LCP, CLS and INP."
 >
 	<header class="hero wrap" slot="header">
 		<div class="intro">

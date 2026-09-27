@@ -14,6 +14,11 @@
 - DO keep pure math in `utils/` so it is testable without a DOM
 - DO keep one issue per file in `src/content/perf/`; the schema in `src/content.config.ts` is the contract
 - DO back every claim in an entry with its `refs` — prefer web.dev, MDN and Chrome for Developers
+- DO file every entry by the rule in `src/taxonomy/basis.ts`: the Web Vital whose official guide prescribes its fix, with that guide as its first ref — never by feel; a fix no guide prescribes is out of scope
+- DO give it the phase Google publishes for that vital (`src/taxonomy/phases.ts`); FCP has none
+- DO NOT order entries by hand: page order is derived (`src/taxonomy/order.ts`)
+- DO keep `detect` to single-line regexes without lookaround or backreferences, so ripgrep runs them too; narrow false positives in `fineWhen`
+- DO keep `src/modules/catalog/types.ts` identical in perf and vulns — `catalog.json` is the contract skills read
 
 ## Tests
 
