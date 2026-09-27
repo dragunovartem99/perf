@@ -1,7 +1,8 @@
 ---
-order: 2
+order: 6
 title: Animating layout properties
 chapter: rendering
+phase: paint
 metrics: [fps]
 impact: high
 slow: |-
@@ -10,6 +11,10 @@ fast: |
     .drawer { transition: transform 300ms; }
 lang: css
 spot: "Rendering drawer → Paint flashing: green on every frame"
+detect:
+    - 'transition:[^;]*\b(top|left|right|bottom|width|height|margin|padding)\b'
+    - "@keyframes"
+fineWhen: "Only `transform`, `opacity` or `filter` change, or it runs once on a small element."
 refs:
     - https://web.dev/articles/animations-guide
     - https://web.dev/articles/stick-to-compositor-only-properties-and-manage-layer-count

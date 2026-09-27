@@ -14,6 +14,9 @@
 - DO keep pure math in `utils/` so it is testable without a DOM
 - DO keep one issue per file in `src/content/perf/`; the schema in `src/content.config.ts` is the contract
 - DO back every claim in an entry with its `refs` — prefer web.dev, MDN and Chrome for Developers
+- DO place every entry in a `phase` from `src/taxonomy.ts`; a phase with no card is a gap to fill
+- DO keep `detect` to single-line regexes without lookaround or backreferences, so ripgrep runs them too; narrow false positives in `fineWhen`
+- DO keep `src/modules/catalog/types.ts` identical in perf and vulns — `catalog.json` is the contract skills read
 
 ## Tests
 

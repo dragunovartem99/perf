@@ -1,7 +1,8 @@
 ---
-order: 3
+order: 5
 title: Transpiling for browsers nobody uses
 chapter: bundle
+phase: targets
 metrics: [lcp, inp]
 impact: medium
 slow: |-
@@ -11,10 +12,16 @@ fast: |
     // browserslist
     "baseline widely available"
 lang: js
-spot: "Lighthouse: “Avoid serving legacy JavaScript to modern browsers”"
+spot: "Lighthouse: “Legacy JavaScript”"
+detect:
+    - "browserslist"
+    - 'ie\s*11'
+    - '["'']target["'']:\s*["'']es5'
+    - "@babel/preset-env"
+fineWhen: "Analytics show real traffic from those browsers, and they get a separate legacy build."
 refs:
     - https://web.dev/articles/publish-modern-javascript
     - https://web.dev/baseline
 ---
 
-ES5 output turns classes and `async` into longer helpers and ships polyfills to browsers that have the feature. Target what visitors run — Baseline is a sane default.
+ES5 output turns classes and `async` into longer helpers and ships polyfills to browsers that have the feature. Target what visitors actually run; Baseline is a sane default.

@@ -2,6 +2,7 @@
 order: 1
 title: Rendering every request from scratch
 chapter: loading
+phase: ttfb
 metrics: [lcp]
 impact: high
 slow: |-
@@ -10,6 +11,11 @@ fast: |
     Cache-Control: public, s-maxage=60, stale-while-revalidate=600
 lang: http
 spot: "Network panel → Timing: “Waiting for server response” over 0.8 s"
+detect:
+    - 'Cache-Control:\s*(no-store|private)'
+    - "force-dynamic"
+    - "getServerSideProps"
+fineWhen: "The HTML really is per-user — an inbox, a cart — or the CDN already caches it under a key that separates users."
 refs:
     - https://web.dev/articles/optimize-ttfb
     - https://web.dev/articles/ttfb

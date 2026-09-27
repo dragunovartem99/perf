@@ -4,7 +4,7 @@ import { getCollection } from "astro:content";
 import ChapterCard from "@/components/ChapterCard.astro";
 import DeathList from "@/components/DeathList.astro";
 import PerfCard from "@/components/PerfCard.astro";
-import { CHAPTER_IDS } from "@/content.config";
+import { CHAPTER_IDS } from "@/taxonomy";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 
 const entries = (await getCollection("perf")).toSorted((a, b) => a.data.order - b.data.order);

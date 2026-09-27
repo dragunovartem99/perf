@@ -2,6 +2,7 @@
 order: 2
 title: Content injected above the fold
 chapter: layout
+phase: injected
 metrics: [cls]
 impact: high
 slow: |-
@@ -11,9 +12,14 @@ fast: |
 lang: js
 fastLang: css
 spot: "Performance panel: Layout shift clusters, culprit named"
+detect:
+    - '\.prepend\('
+    - 'insertBefore\('
+    - 'insertAdjacentHTML\(["'']afterbegin'
+fineWhen: "It lands below the viewport, out of flow (`position: fixed`), or within 500 ms of the user's own input, which CLS forgives."
 refs:
     - https://web.dev/articles/optimize-cls
     - https://web.dev/articles/cls
 ---
 
-A late banner pushes away whatever the reader was looking at. Reserve its space up front, or put it below the fold or out of flow.
+A late banner pushes down whatever the reader was looking at. Reserve its space up front, or put it below the fold or out of flow.

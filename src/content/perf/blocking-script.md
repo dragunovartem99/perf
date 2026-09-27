@@ -1,7 +1,8 @@
 ---
-order: 2
+order: 11
 title: Parser-blocking scripts
 chapter: loading
+phase: render-delay
 metrics: [lcp]
 impact: high
 slow: |-
@@ -9,10 +10,13 @@ slow: |-
 fast: |
     <script src="/app.js" defer></script>
 lang: html
-spot: "Lighthouse: “Eliminate render-blocking resources”"
+spot: "Lighthouse: “Render blocking requests”"
+detect:
+    - '<script\s[^>]*src='
+fineWhen: 'It has `defer`, `async` or `type="module"` (modules defer by default), or it sits at the end of `<body>`.'
 refs:
     - https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/script
     - https://web.dev/articles/efficiently-load-third-party-javascript
 ---
 
-The page stays blank while the script downloads and runs. `defer` runs it after parsing, in order; `async` runs it on arrival, for scripts nothing depends on.
+Nothing below the tag renders while the script downloads and runs. `defer` runs it after parsing, in order; `async` runs it on arrival, for scripts nothing depends on.
