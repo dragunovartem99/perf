@@ -16,13 +16,19 @@ const { kanji, target, sign } = CHAPTERS[id];
 	<div class="wrap inner">
 		<div class="text">
 			<p class="kicker label">Chapter {number}</p>
-			<h2 id={`${id}-heading`} class="title">
+			<h2
+				id={`${id}-heading`}
+				class="title"
+			>
 				{target}
 			</h2>
 			<p class="subtitle">{sign}</p>
 		</div>
 
-		<p class="kanji" lang="ja">
+		<p
+			class="kanji"
+			lang="ja"
+		>
 			{kanji}
 		</p>
 	</div>
