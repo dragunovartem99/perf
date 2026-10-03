@@ -19,7 +19,9 @@ const lines = await highlight({ code, lang });
 <code>
 	{lines.map((line) => (
 		<span class="line">
-			{line.map(({ text, kind }) => (kind === "plain" ? text : <span class={kind}>{text}</span>))}
+			{line.map(({ text, kind }) =>
+				kind === "plain" ? text : <span class={kind}>{text}</span>
+			)}
 		</span>
 	))}
 </code>

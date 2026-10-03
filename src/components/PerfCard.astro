@@ -37,10 +37,16 @@ function refLabel(ref: string): string {
 }
 ---
 
-<article class="card" id={entry.id}>
+<article
+	class="card"
+	id={entry.id}
+>
 	<header class="head">
 		<p class="meta label">
-			<a class="number" href={`#${entry.id}`}>
+			<a
+				class="number"
+				href={`#${entry.id}`}
+			>
 				{pad(index)}
 			</a>
 			<span aria-hidden="true">·</span>
@@ -67,7 +73,12 @@ function refLabel(ref: string): string {
 			<figcaption class="meta label caption">
 				Fast
 				{/* Revealed by the script: without JavaScript the text is still selectable. */}
-				<button class="copy" type="button" data-copy={fast.trim()} hidden>
+				<button
+					class="copy"
+					type="button"
+					data-copy={fast.trim()}
+					hidden
+				>
 					Copy
 				</button>
 			</figcaption>
@@ -85,7 +96,10 @@ function refLabel(ref: string): string {
 	<ul class="refs meta">
 		{refs.map((ref) => (
 			<li>
-				<a href={ref} rel="noreferrer noopener">
+				<a
+					href={ref}
+					rel="noreferrer noopener"
+				>
 					{refLabel(ref)}
 				</a>
 			</li>

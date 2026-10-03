@@ -4,8 +4,14 @@ import { CHAPTER_IDS, CHAPTERS } from "@/taxonomy";
 /** Each name is struck through, pen-drawn by the motion script, once its chapter is read. */
 ---
 
-<nav class="list" aria-labelledby="death-list">
-	<h2 id="death-list" class="meta label heading">
+<nav
+	class="list"
+	aria-labelledby="death-list"
+>
+	<h2
+		id="death-list"
+		class="meta label heading"
+	>
 		Death list five
 	</h2>
 	<ol>
@@ -13,12 +19,21 @@ import { CHAPTER_IDS, CHAPTERS } from "@/taxonomy";
 			<li data-target={id}>
 				<a href={`#${id}`}>
 					{/* 第一章 → 一: the list already reads in order, so the numeral is decoration. */}
-					<span class="number" lang="ja" aria-hidden="true">
+					<span
+						class="number"
+						lang="ja"
+						aria-hidden="true"
+					>
 						{CHAPTERS[id].kanji.slice(1, -1)}
 					</span>
 					<span class="name">
 						{CHAPTERS[id].target}
-						<svg class="strike" viewBox="0 0 100 10" preserveAspectRatio="none" aria-hidden="true">
+						<svg
+							class="strike"
+							viewBox="0 0 100 10"
+							preserveAspectRatio="none"
+							aria-hidden="true"
+						>
 							<path d="M1 6 C 18 3, 34 8, 52 5 S 84 3, 99 6" />
 						</svg>
 					</span>
@@ -28,7 +43,10 @@ import { CHAPTER_IDS, CHAPTERS } from "@/taxonomy";
 	</ol>
 	<p class="meta">
 		Measured on real users.{" "}
-		<a class="source" href="https://web.dev/articles/vitals">
+		<a
+			class="source"
+			href="https://web.dev/articles/vitals"
+		>
 			web.dev/vitals
 		</a>
 	</p>
