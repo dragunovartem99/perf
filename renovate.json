@@ -1,11 +1,4 @@
 {
 	"$schema": "https://docs.renovatebot.com/renovate-schema.json",
-	"extends": ["github>dragunovartem99/renovate-config"],
-	"packageRules": [
-		{
-			"description": "Hold TypeScript 7 until @astrojs/check supports it",
-			"matchPackageNames": ["typescript"],
-			"allowedVersions": "<7"
-		}
-	]
+	"extends": ["github>dragunovartem99/renovate-config"]
 }
