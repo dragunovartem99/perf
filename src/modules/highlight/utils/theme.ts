@@ -2,11 +2,9 @@ import type { ThemeRegistrationRaw } from "shiki";
 
 import type { TokenKind } from "../types";
 
-/**
- * Shiki colours tokens; this page cannot, because inline styles break its CSP.
- * So the theme paints each kind a sentinel colour — never shown — and the
- * colour is read back as a class name. TextMate scope matching stays Shiki's.
- */
+// Shiki colours tokens; this page cannot, because inline styles break its CSP.
+// So the theme paints each kind a sentinel colour — never shown — and the
+// colour is read back as a class name. TextMate scope matching stays Shiki's.
 const SENTINELS: Record<TokenKind, string> = {
 	plain: "#000000",
 	comment: "#000001",

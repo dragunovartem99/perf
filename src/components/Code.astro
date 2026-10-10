@@ -7,11 +7,9 @@ type Props = {
 	lang: Lang;
 };
 
-/**
- * A highlighted snippet, for the inside of a `<pre>`. Highlighted at build
- * time into classed spans — no inline styles for the CSP to block, no script.
- * The panel sets the palette: `--code-keyword`, `--code-literal`, `--code-comment`.
- */
+// A highlighted snippet, for the inside of a `<pre>`. Highlighted at build
+// time into classed spans — no inline styles for the CSP to block, no script.
+// The panel sets the palette: `--code-keyword`, `--code-literal`, `--code-comment`.
 const { code, lang } = Astro.props;
 const lines = await highlight({ code, lang });
 ---

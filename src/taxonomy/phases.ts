@@ -1,11 +1,9 @@
 import type { ChapterId } from "./chapters";
 import { CHAPTER_IDS } from "./chapters";
 
-/**
- * Each vital split the way its official article splits it: TTFB's request
- * phases, LCP's subparts (less TTFB, a chapter of its own), CLS's common causes
- * and bfcache, INP's three phases. FCP is published without one.
- */
+// Each vital split the way its official article splits it: TTFB's request
+// phases, LCP's subparts (less TTFB, a chapter of its own), CLS's common causes
+// and bfcache, INP's three phases. FCP is published without one.
 export const PHASES = {
 	ttfb: {
 		"redirect": "Redirects",
