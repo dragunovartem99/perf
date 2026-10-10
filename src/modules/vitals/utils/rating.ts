@@ -1,9 +1,7 @@
 import type { Metric, Rating } from "../types";
 
-/**
- * Upper bounds of "good" and "needs improvement". LCP and INP in milliseconds,
- * CLS unitless — https://web.dev/articles/vitals.
- */
+// Upper bounds of "good" and "needs improvement". LCP and INP in milliseconds,
+// CLS unitless — https://web.dev/articles/vitals.
 export const THRESHOLDS: Record<Metric, readonly [number, number]> = {
 	lcp: [2500, 4000],
 	cls: [0.1, 0.25],

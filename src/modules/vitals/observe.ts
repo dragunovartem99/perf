@@ -1,8 +1,6 @@
-/**
- * The page measuring itself with the same observers the web-vitals library
- * uses. Each metric reports whenever it changes; browsers that lack an entry
- * type simply never report that metric.
- */
+// The page measuring itself with the same observers the web-vitals library
+// uses. Each metric reports whenever it changes; browsers that lack an entry
+// type simply never report that metric.
 
 import type { Interaction, LayoutShift, Reading } from "./types";
 import { clsFromShifts } from "./utils/cls";

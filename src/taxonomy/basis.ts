@@ -1,10 +1,8 @@
 import type { ChapterId } from "./chapters";
 
-/**
- * The sheet is not grouped by feel. Chapters are the five Web Vitals, in the
- * order a page load reaches them; web.dev pairs the two supporting ones with
- * their causes — TTFB with the server, FCP with render-blocking resources.
- */
+// The sheet is not grouped by feel. Chapters are the five Web Vitals, in the
+// order a page load reaches them; web.dev pairs the two supporting ones with
+// their causes — TTFB with the server, FCP with render-blocking resources.
 export const BASIS = {
 	rule:
 		"An entry goes under the Web Vital whose official guide prescribes its fix; if several do, " +

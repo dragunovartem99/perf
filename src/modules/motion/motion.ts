@@ -1,9 +1,5 @@
-/**
- * Every tween on the page. Transform, opacity and stroke only, so nothing
- * relayouts mid-animation, and nothing the reader needs is ever hidden waiting
- * on a script: content already on screen at load is left alone, and without
- * JavaScript the page is simply still.
- */
+// Transform, opacity and stroke only, so nothing relayouts mid-animation.
+// Content on screen at load is left alone; without JavaScript the page is still.
 
 import { gsap } from "gsap";
 import { DrawSVGPlugin } from "gsap/DrawSVGPlugin";
@@ -50,11 +46,9 @@ function deathList(): void {
 	}
 }
 
-// A title card's heading rises line by line out of a mask, then its kicker,
-// subtitle and kanji fade in after it, one by one — including a card already on screen at load, which
-// CSS keeps hidden until this runs (see ChapterCard.astro). `autoSplit`
-// re-splits once the web font lands or the width changes, so the lines always
-// match what is on screen.
+// Includes cards already on screen at load — CSS hides them until this runs
+// (see ChapterCard.astro). `autoSplit` re-splits when the web font lands or the
+// width changes, so the lines match what is on screen.
 function chapterCards(): void {
 	for (const card of document.querySelectorAll<HTMLElement>(".chapter-card")) {
 		const title = card.querySelector(".title");
